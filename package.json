@@ -1,0 +1,12 @@
+{
+  "name": "rich-world-real-estate-dubai",
+  "version": "1.0.0",
+  "description": "Rich World Real Estate Dubai — 2,000+ Properties Sold | End-User Dream Homes & Investor Capital Growth Advisory | Jota CRM Ready",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

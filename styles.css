@@ -1,0 +1,243 @@
+/* ==========================================================================
+   RICH WORLD REAL ESTATE DUBAI — ULTRA-LUXURY DUAL-THEME STYLESHEET
+   Light-First Default (#F6F1E7 / #FFFDF8 / #14201B / #7A5A1E)
+   Dark Mode Toggle (#09100D / #121D18 / #F2EDE0 / #D9B76F)
+   ========================================================================== */
+
+:root {
+  --bg-primary: #F6F1E7;
+  --bg-surface: #FFFDF8;
+  --bg-elevated: #EFE7D6;
+  --bg-glass: rgba(255, 253, 248, 0.88);
+  --text-primary: #14201B;
+  --text-secondary: #3E4C45;
+  --text-muted: #68766E;
+  --accent-gold: #7A5A1E;
+  --accent-gold-bright: #B88933;
+  --accent-gold-light: rgba(122, 90, 30, 0.12);
+  --border-subtle: rgba(20, 32, 27, 0.10);
+  --border-gold: rgba(122, 90, 30, 0.30);
+  --shadow-soft: 0 16px 40px -12px rgba(20, 32, 27, 0.08);
+  --shadow-gold: 0 12px 32px -8px rgba(122, 90, 30, 0.22);
+}
+
+html.theme-dark {
+  --bg-primary: #09100D;
+  --bg-surface: #121D18;
+  --bg-elevated: #192821;
+  --bg-glass: rgba(18, 29, 24, 0.88);
+  --text-primary: #F2EDE0;
+  --text-secondary: #C6C0B2;
+  --text-muted: #8A968F;
+  --accent-gold: #D9B76F;
+  --accent-gold-bright: #E8C985;
+  --accent-gold-light: rgba(217, 183, 111, 0.14);
+  --border-subtle: rgba(242, 237, 224, 0.10);
+  --border-gold: rgba(217, 183, 111, 0.32);
+  --shadow-soft: 0 20px 50px -12px rgba(0, 0, 0, 0.55);
+  --shadow-gold: 0 14px 36px -8px rgba(217, 183, 111, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+html[dir="rtl"] {
+  font-family: 'Cairo', 'Amiri', sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+html[dir="rtl"] .font-display {
+  font-family: 'Amiri', Georgia, serif;
+}
+
+/* Theme Utility Classes */
+.bg-luxury-primary { background-color: var(--bg-primary); }
+.bg-luxury-surface { background-color: var(--bg-surface); }
+.bg-luxury-elevated { background-color: var(--bg-elevated); }
+.bg-luxury-glass {
+  background-color: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-luxury-primary { color: var(--text-primary); }
+.text-luxury-secondary { color: var(--text-secondary); }
+.text-luxury-muted { color: var(--text-muted); }
+.text-luxury-gold { color: var(--accent-gold); }
+
+.border-luxury { border-color: var(--border-subtle); }
+.border-luxury-gold { border-color: var(--border-gold); }
+
+.shadow-luxury { box-shadow: var(--shadow-soft); }
+.shadow-luxury-gold { box-shadow: var(--shadow-gold); }
+
+/* Gold Gradient Text & Fills */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #7A5A1E 0%, #B88933 50%, #8C6622 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.theme-dark .gold-gradient-text {
+  background: linear-gradient(135deg, #D9B76F 0%, #F5DFAC 50%, #C49B4B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #7A5A1E 0%, #9E7629 100%);
+  color: #FFFDF8;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.theme-dark .btn-gold {
+  background: linear-gradient(135deg, #D9B76F 0%, #B88933 100%);
+  color: #09100D;
+  font-weight: 700;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+  filter: brightness(1.06);
+}
+
+/* Arch Frames & Bento Cards */
+.arch-frame {
+  border-radius: 9999px 9999px 24px 24px;
+  overflow: hidden;
+}
+
+.bento-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.bento-card:hover {
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Logo presentation in Light vs Dark mode */
+.rw-logo-badge {
+  background: radial-gradient(circle at center, #111815 0%, #070B09 100%);
+  border: 1px solid rgba(217, 183, 111, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* Animated Satin Marquee */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 38s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Mobile Slide Drawer */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 16, 13, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(86vw, 360px);
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-gold);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+html[dir="rtl"] .drawer-panel {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.drawer-panel.active {
+  transform: translateX(0);
+}
+
+/* WhatsApp Icon-Only Pulse (Rule 5 Compliant: Zero Text) */
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+.wa-icon-only-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #25D366;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  transition: transform 0.22s ease, background-color 0.22s ease;
+  animation: waPulse 2.8s infinite;
+}
+
+.wa-icon-only-btn:hover {
+  background: #1EBE5D;
+  transform: scale(1.07);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-gold);
+  border-radius: 9999px;
+}

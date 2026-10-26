@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Rich World Real Estate Dubai | 2,000+ Properties Sold • Dream Homes & Capital Growth Advisory</title>
+  <meta name="description" content="Rich World Real Estate Dubai — Over 2,000+ properties sold. Bespoke advisory helping end-users find their dream home and global investors maximize capital growth & net yields in Dubai." />
+  <link rel="icon" type="image/png" href="assets/logo-transparent.png" />
+
+  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Amiri, Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="antialiased selection:bg-[#B88933]/25">
+
+  <!-- TOP LIVE ANNOUNCEMENT BAR (Editable from Admin Dashboard) -->
+  <div id="topAnnouncementBar" class="w-full bg-[#14201B] text-[#F2EDE0] border-b border-[#D9B76F]/30 px-4 py-2 text-xs md:text-sm">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#D9B76F] animate-pulse"></span>
+        <span id="announcementText" class="font-medium tracking-wide">
+          🏆 RERA-Certified Dubai Brokerage • Over 2,000+ Properties Sold • 0% Income &amp; Capital Gains Tax • 10-Year UAE Golden Visa Structuring
+        </span>
+      </div>
+      <div class="hidden sm:flex items-center gap-4 text-[11px] uppercase tracking-widest text-[#D9B76F]">
+        <span>DLD Escrow Protected</span>
+        <span>•</span>
+        <span>End-User &amp; Investor Advisory</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY LUXURY HEADER -->
+  <header class="sticky top-0 z-50 bg-luxury-glass border-b border-luxury transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      
+      <!-- Left: Mobile Drawer Trigger + Brand Logo -->
+      <div class="flex items-center gap-3">
+        <button id="openDrawerBtn" type="button" aria-label="Open Navigation Menu" class="lg:hidden p-2.5 rounded-xl border border-luxury hover:border-luxury-gold text-luxury-primary transition">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl rw-logo-badge flex items-center justify-center p-1.5 overflow-hidden shrink-0">
+            <img src="assets/logo-transparent.png" alt="Rich World Real Estate Logo" class="w-full h-full object-contain group-hover:scale-105 transition duration-300" />
+          </div>
+          <div>
+            <span class="block font-display text-xl sm:text-2xl font-bold tracking-wider uppercase gold-gradient-text leading-none">Rich World</span>
+            <span class="block text-[10px] tracking-[0.28em] uppercase text-luxury-muted font-semibold mt-0.5">Real Estate • Dubai</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center: Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-luxury-secondary">
+        <a href="#services" class="hover:text-luxury-gold transition" data-i18n="nav_services">Advisory Services</a>
+        <a href="#track-record" class="hover:text-luxury-gold transition" data-i18n="nav_track">2,000+ Sold</a>
+        <a href="#portfolio" class="hover:text-luxury-gold transition" data-i18n="nav_portfolio">Signature Portfolio</a>
+        <a href="#team" class="hover:text-luxury-gold transition" data-i18n="nav_team">Our Team</a>
+        <a href="#blogs" class="hover:text-luxury-gold transition" data-i18n="nav_blogs">Investment Blogs</a>
+        <a href="#ai-advisor" class="hover:text-luxury-gold transition flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-luxury-gold"></i>
+          <span data-i18n="nav_bot">Dubai Law AI Bot</span>
+        </a>
+        <a href="#register-inbox" class="hover:text-luxury-gold transition" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <!-- Right: Controls (Currency, Lang, Theme, Admin Pill, Sober CTA, WhatsApp Icon-Only) -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <!-- Currency Switcher -->
+        <button id="currencyToggleBtn" type="button" class="px-2.5 py-1.5 rounded-xl border border-luxury text-xs font-bold tracking-wider uppercase hover:border-luxury-gold transition" title="Toggle Currency AED / USD">
+          <span id="currencyLabel">AED</span>
+        </button>
+
+        <!-- Language Switcher (EN / AR RTL) -->
+        <button id="langToggleBtn" type="button" class="hidden sm:inline-flex px-2.5 py-1.5 rounded-xl border border-luxury text-xs font-bold hover:border-luxury-gold transition" title="Switch Language EN / AR">
+          <span id="langLabel">العربية</span>
+        </button>
+
+        <!-- Theme Toggle (Light-First / Dark Mode) -->
+        <button id="themeToggleBtn" type="button" aria-label="Toggle Light/Dark Theme" class="p-2 rounded-xl border border-luxury hover:border-luxury-gold text-luxury-primary transition">
+          <i id="themeIcon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Admin Access Pill (Golden Pill when logged in) -->
+        <button id="adminAccessBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-luxury-gold bg-[#7A5A1E]/10 text-luxury-gold text-xs font-semibold hover:bg-[#7A5A1E]/20 transition" title="Admin Dashboard & Jota Lead Exporter">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span id="adminBtnText" class="hidden md:inline">Admin</span>
+          <span id="adminLeadCountBadge" class="px-1.5 py-0.2 rounded-full bg-[#7A5A1E] text-white text-[10px] font-bold">0</span>
+        </button>
+
+        <!-- Sober Action Button (Rule 8.3: "Book Appointment") -->
+        <a href="#register-inbox" class="hidden sm:inline-flex items-center px-4 py-2 rounded-full btn-gold text-xs sm:text-sm font-semibold tracking-wide" data-i18n="cta_book">
+          Book Appointment
+        </a>
+
+        <!-- WhatsApp Button (STRICT RULE 5: ICON ONLY, ZERO TEXT) -->
+        <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10 shrink-0">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE SLIDE-OUT DRAWER (Thumb-friendly Mobile-First Navigation) -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  <aside id="drawerPanel" class="drawer-panel p-6 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-5 border-b border-luxury">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl rw-logo-badge p-1.5">
+            <img src="assets/logo-transparent.png" alt="Rich World Logo" class="w-full h-full object-contain" />
+          </div>
+          <div>
+            <p class="font-display text-lg font-bold uppercase gold-gradient-text leading-none">Rich World</p>
+            <p class="text-[10px] tracking-widest uppercase text-luxury-muted mt-0.5">Real Estate Dubai</p>
+          </div>
+        </div>
+        <button id="closeDrawerBtn" type="button" aria-label="Close Menu" class="p-2 rounded-xl border border-luxury text-luxury-primary">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <nav class="mt-6 flex flex-col gap-2 text-base font-medium">
+        <a href="#hero" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="home" class="w-4 h-4 text-luxury-gold"></i> <span>Welcome &amp; Vision</span>
+        </a>
+        <a href="#services" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="compass" class="w-4 h-4 text-luxury-gold"></i> <span>End-User &amp; Investor Advisory</span>
+        </a>
+        <a href="#track-record" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="award" class="w-4 h-4 text-luxury-gold"></i> <span>2,000+ Properties Sold</span>
+        </a>
+        <a href="#portfolio" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="building-2" class="w-4 h-4 text-luxury-gold"></i> <span>Signature Properties</span>
+        </a>
+        <a href="#team" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="users" class="w-4 h-4 text-luxury-gold"></i> <span>Akshay &amp; Advisory Team</span>
+        </a>
+        <a href="#blogs" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="book-open" class="w-4 h-4 text-luxury-gold"></i> <span>Dubai Investment Blogs</span>
+        </a>
+        <a href="#ai-advisor" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="bot" class="w-4 h-4 text-luxury-gold"></i> <span>Dubai Law &amp; ROI AI Bot</span>
+        </a>
+        <a href="#register-inbox" class="drawer-link px-3.5 py-2.5 rounded-xl hover:bg-luxury-elevated flex items-center gap-3">
+          <i data-lucide="inbox" class="w-4 h-4 text-luxury-gold"></i> <span>Priority Registration Inbox</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Quick Settings -->
+      <div class="mt-6 pt-5 border-t border-luxury grid grid-cols-3 gap-2">
+        <button id="drawerCurrencyBtn" type="button" class="py-2 rounded-xl border border-luxury text-xs font-bold uppercase">AED / USD</button>
+        <button id="drawerLangBtn" type="button" class="py-2 rounded-xl border border-luxury text-xs font-bold">EN / عربي</button>
+        <button id="drawerThemeToggleBtn" type="button" class="py-2 rounded-xl border border-luxury text-xs font-bold flex items-center justify-center gap-1">
+          <i id="drawerThemeIcon" data-lucide="moon" class="w-3.5 h-3.5"></i> Theme
+        </button>
+      </div>
+    </div>
+
+    <div class="pt-6 border-t border-luxury flex items-center justify-between gap-3">
+      <a href="#register-inbox" class="drawer-link flex-1 py-3 rounded-full btn-gold text-center text-sm font-semibold">
+        Book Appointment
+      </a>
+      <!-- WhatsApp Button (STRICT RULE 5: ICON ONLY) -->
+      <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-11 h-11 shrink-0">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       1. HERO WELCOME LANDING SECTION (Introductory Dual-Mandate & 2,000+ Sold)
+       ======================================================================== -->
+  <section id="hero" class="relative pt-8 pb-16 md:pt-14 md:pb-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Column: Brand Welcome, Dual Services Intro & 2,000+ Milestone -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-luxury-gold bg-luxury-surface shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-[#B88933]"></span>
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-luxury-gold" data-i18n="hero_badge">
+              WELCOME TO RICH WORLD REAL ESTATE DUBAI • OVER 2,000+ PROPERTIES SOLD
+            </span>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight text-luxury-primary" data-i18n="hero_title">
+            Guiding Families to Their <span class="italic gold-gradient-text">Dream Sanctuary</span> &amp; Investors to <span class="italic gold-gradient-text">Maximum Capital Growth.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-luxury-secondary leading-relaxed max-w-2xl" data-i18n="hero_subtitle">
+            Backed by a proven track record of <strong>more than 2,000+ properties sold</strong> across Dubai’s premier freehold destinations, <strong>Rich World Real Estate</strong> delivers tailored end-to-end accompaniment: helping end-users secure the home of their dreams and empowering global investors to multiply their capital through the highest-performing real estate assets in the market.
+          </p>
+
+          <!-- Dual-Mandate Introductory Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <!-- Pillar 1: End-Users -->
+            <div class="bento-card p-5 border-l-4 border-l-[#7A5A1E]">
+              <div class="flex items-center gap-2.5 mb-2">
+                <div class="w-9 h-9 rounded-xl bg-[#7A5A1E]/15 flex items-center justify-center text-luxury-gold">
+                  <i data-lucide="key-round" class="w-5 h-5"></i>
+                </div>
+                <h2 class="font-display text-xl font-bold text-luxury-primary" data-i18n="pillar1_title">For End-Users: Your Dream Home</h2>
+              </div>
+              <p class="text-xs sm:text-sm text-luxury-secondary leading-relaxed" data-i18n="pillar1_desc">
+                Personal architectural curation across Palm Jumeirah, Dubai Hills, and Downtown. We handle community selection, mortgage structuring, DLD Form F protection, and turnkey handover.
+              </p>
+            </div>
+
+            <!-- Pillar 2: Investors -->
+            <div class="bento-card p-5 border-l-4 border-l-[#B88933]">
+              <div class="flex items-center gap-2.5 mb-2">
+                <div class="w-9 h-9 rounded-xl bg-[#7A5A1E]/15 flex items-center justify-center text-luxury-gold">
+                  <i data-lucide="trending-up" class="w-5 h-5"></i>
+                </div>
+                <h2 class="font-display text-xl font-bold text-luxury-primary" data-i18n="pillar2_title">For Investors: Capital &amp; Yield</h2>
+              </div>
+              <p class="text-xs sm:text-sm text-luxury-secondary leading-relaxed" data-i18n="pillar2_desc">
+                Strategic portfolio accompaniment targeting <strong>8.5%–12% NET rental yields</strong>, pre-launch off-plan ROE arbitrage, RERA Escrow safety, and 10-Year UAE Golden Visa qualification.
+              </p>
+            </div>
+          </div>
+
+          <!-- Hero Actions -->
+          <div class="flex flex-wrap items-center gap-3.5 pt-2">
+            <a href="#register-inbox" class="px-7 py-3.5 rounded-full btn-gold text-sm font-semibold tracking-wide inline-flex items-center gap-2 shadow-luxury-gold">
+              <span data-i18n="cta_book">Book Appointment</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#portfolio" class="px-6 py-3.5 rounded-full border border-luxury-gold bg-luxury-surface text-luxury-primary hover:bg-luxury-elevated text-sm font-semibold transition">
+              Explore Curated Portfolio
+            </a>
+            <button type="button" onclick="document.getElementById('ai-advisor').scrollIntoView({behavior:'smooth'})" class="px-5 py-3.5 rounded-full border border-luxury bg-luxury-surface text-luxury-secondary hover:border-luxury-gold text-xs sm:text-sm font-semibold inline-flex items-center gap-2 transition">
+              <i data-lucide="bot" class="w-4 h-4 text-luxury-gold"></i>
+              <span>Ask Dubai Law &amp; ROI Bot</span>
+            </button>
+            <!-- WhatsApp Icon-Only Trigger (Rule 5) -->
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-12 h-12">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Arch Frame Luxury Showcase + Official Rich World Emblem Floating Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="arch-frame border-2 border-luxury-gold shadow-luxury relative aspect-[4/5] bg-[#09100D]">
+            <img src="assets/penthouse_hero.jpg" alt="Rich World Real Estate Luxury Dubai Penthouse" class="w-full h-full object-cover opacity-90" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#09100D] via-[#09100D]/25 to-transparent"></div>
+
+            <!-- Top Official Rich World Crest Overlay -->
+            <div class="absolute top-6 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-2xl bg-[#09100D]/85 backdrop-blur-md border border-[#D9B76F]/40 flex items-center gap-3 shadow-lg">
+              <img src="assets/logo-transparent.png" alt="Rich World Crest" class="w-10 h-10 object-contain" />
+              <div class="text-left">
+                <p class="font-display text-sm font-bold tracking-widest uppercase text-[#D9B76F]">Rich World</p>
+                <p class="text-[10px] text-[#F2EDE0]/80 uppercase tracking-wider">Dubai Freehold Authority</p>
+              </div>
+            </div>
+
+            <!-- Bottom Overlay: 2,000+ Properties Sold Seal -->
+            <div class="absolute bottom-5 inset-x-5 p-5 rounded-2xl bg-[#09100D]/90 backdrop-blur-md border border-[#D9B76F]/40 text-[#F2EDE0]">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <span class="text-[10px] uppercase tracking-[0.22em] text-[#D9B76F] font-bold block">Proven Market Leadership</span>
+                  <p class="font-display text-3xl font-bold text-white mt-0.5">2,000+ Properties Sold</p>
+                  <p class="text-xs text-[#C6C0B2] mt-1">Trusted by families &amp; institutional investors across 35+ nationalities.</p>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-[#D9B76F]/15 border border-[#D9B76F]/40 flex flex-col items-center justify-center shrink-0 text-[#D9B76F]">
+                  <i data-lucide="shield-check" class="w-6 h-6"></i>
+                  <span class="text-[9px] font-bold uppercase mt-0.5">RERA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SATIN ANIMATED MARQUEE -->
+  <div class="w-full py-3.5 bg-[#14201B] text-[#F2EDE0] border-y border-[#D9B76F]/30 overflow-hidden">
+    <div class="marquee-track flex items-center gap-10 text-xs uppercase tracking-[0.24em] font-semibold">
+      <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-[#D9B76F]"></i> 2,000+ PROPERTIES SOLD IN EXPERIENCE</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="home" class="w-4 h-4 text-[#D9B76F]"></i> END-USER DREAM HOME CONCIERGE</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="trending-up" class="w-4 h-4 text-[#D9B76F]"></i> HIGH-YIELD INVESTOR CAPITAL GROWTH (8.5%–12% NET)</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="scale" class="w-4 h-4 text-[#D9B76F]"></i> 100% DLD &amp; RERA ESCROW PROTECTION</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="Passport" class="w-4 h-4 text-[#D9B76F]"></i> 10-YEAR UAE GOLDEN VISA ADVISORY</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-[#D9B76F]"></i> 2,000+ PROPERTIES SOLD IN EXPERIENCE</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="home" class="w-4 h-4 text-[#D9B76F]"></i> END-USER DREAM HOME CONCIERGE</span>
+      <span>•</span>
+      <span class="flex items-center gap-2"><i data-lucide="trending-up" class="w-4 h-4 text-[#D9B76F]"></i> HIGH-YIELD INVESTOR CAPITAL GROWTH (8.5%–12% NET)</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. TRACK RECORD & AUTHORITY METRICS (Highlighting 2,000+ Sold)
+       ======================================================================== -->
+  <section id="track-record" class="py-16 md:py-20 border-b border-luxury">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-5 flex items-center gap-5 p-6 rounded-3xl rw-logo-badge text-[#F2EDE0]">
+          <img src="assets/logo.jpg" alt="Rich World Real Estate Official Crest" class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover border border-[#D9B76F]/40 shrink-0" />
+          <div>
+            <span class="text-[11px] uppercase tracking-[0.22em] text-[#D9B76F] font-bold">The Rich World Standard</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">Over 2,000 Properties Transacted</h2>
+            <p class="text-xs sm:text-sm text-[#C6C0B2] mt-2 leading-relaxed">
+              Every transaction is backed by rigorous RERA due diligence, developer escrow verification, and bespoke negotiation led personally by Akshay and our senior specialists.
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="bento-card p-5 text-center">
+            <span class="font-display text-3xl sm:text-4xl font-bold gold-gradient-text block">2,000+</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-luxury-primary mt-1 block">Properties Sold</span>
+            <span class="text-[11px] text-luxury-muted mt-1 block">Ready &amp; Off-Plan</span>
+          </div>
+          <div class="bento-card p-5 text-center">
+            <span class="font-display text-3xl sm:text-4xl font-bold gold-gradient-text block">AED 4.8B+</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-luxury-primary mt-1 block">Advised Volume</span>
+            <span class="text-[11px] text-luxury-muted mt-1 block">Prime Freehold Assets</span>
+          </div>
+          <div class="bento-card p-5 text-center">
+            <span class="font-display text-3xl sm:text-4xl font-bold gold-gradient-text block">9.4%</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-luxury-primary mt-1 block">Avg. Net Yield</span>
+            <span class="text-[11px] text-luxury-muted mt-1 block">0% Tax Environment</span>
+          </div>
+          <div class="bento-card p-5 text-center">
+            <span class="font-display text-3xl sm:text-4xl font-bold gold-gradient-text block">98.7%</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-luxury-primary mt-1 block">Client Retention</span>
+            <span class="text-[11px] text-luxury-muted mt-1 block">Verified Satisfaction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. DUAL-MANDATE ADVISORY SERVICES + INTERACTIVE ROI & DLD CALCULATOR
+       ======================================================================== -->
+  <section id="services" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-luxury-gold">Bespoke Dual-Mandate Advisory</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-luxury-primary mt-2">
+          Tailored Accompaniment for <span class="italic gold-gradient-text">Dream Homeowners</span> &amp; <span class="italic gold-gradient-text">Global Investors</span>
+        </h2>
+        <p class="text-sm sm:text-base text-luxury-secondary mt-3">
+          Whether you are relocating your family to Dubai’s safest luxury communities or deploying capital to achieve double-digit compounding returns, our methodology protects your interests at every step.
+        </p>
+      </div>
+
+      <!-- Bento Grid: End-User vs Investor Advisory -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        
+        <!-- Service Pillar 1: End-User Dream Home Advisory -->
+        <div class="lg:col-span-6 bento-card p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden">
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <span class="px-3.5 py-1 rounded-full bg-[#7A5A1E]/15 text-luxury-gold text-xs font-bold uppercase tracking-wider">
+                Pillar 01 • End-User Advisory
+              </span>
+              <i data-lucide="home" class="w-7 h-7 text-luxury-gold"></i>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-luxury-primary">
+              Finding the Home of Your Dreams in Dubai
+            </h3>
+            <p class="text-sm text-luxury-secondary mt-3 leading-relaxed">
+              Your home is your family’s sanctuary. We go far beyond standard property viewings to analyze micro-community livability, international school proximity, acoustic privacy, Vastu/architectural orientation, and developer build quality.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-sm text-luxury-primary">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-luxury-gold shrink-0 mt-0.5"></i>
+                <span><strong>Bespoke Lifestyle Matching:</strong> Private villas, waterfront penthouses, and family townhouses in Dubai Hills, Palm Jumeirah, Downtown, and Creek Harbour.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-luxury-gold shrink-0 mt-0.5"></i>
+                <span><strong>Complete Legal &amp; Mortgage Protection:</strong> RERA Form F (MOU) drafting, bank valuation negotiation, and resident/non-resident mortgage structuring.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-luxury-gold shrink-0 mt-0.5"></i>
+                <span><strong>Technical Snagging &amp; Move-In Concierge:</strong> 150-point engineering inspection during the Defect Liability Period (DLP), DEWA activation, and Golden Visa family sponsorship.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-luxury flex items-center justify-between gap-4">
+            <a href="#register-inbox" onclick="prefillObjective('End-User: Finding My Dream Home')" class="px-6 py-3 rounded-full btn-gold text-xs sm:text-sm font-semibold">
+              Book Appointment
+            </a>
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Pillar 2: Investor Capital Growth & Yield Advisory -->
+        <div class="lg:col-span-6 bento-card p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden">
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <span class="px-3.5 py-1 rounded-full bg-[#B88933]/15 text-luxury-gold text-xs font-bold uppercase tracking-wider">
+                Pillar 02 • Investor Wealth Management
+              </span>
+              <i data-lucide="line-chart" class="w-7 h-7 text-luxury-gold"></i>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-luxury-primary">
+              Multiplying Investor Capital in Prime Assets
+            </h3>
+            <p class="text-sm text-luxury-secondary mt-3 leading-relaxed">
+              Backed by data from over 2,000+ closed deals, we accompany investors from initial capital allocation to profitable resale or holiday-home cash flow—capturing maximum equity appreciation with minimum capital exposure.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-sm text-luxury-primary">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-luxury-gold shrink-0 mt-0.5"></i>
+                <span><strong>Pre-Launch &amp; Off-Plan ROE Arbitrage:</strong> VIP access to tier-1 developer allocations (30/70 &amp; 50/50 post-handover plans) achieving &gt;140% Return on Equity.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-luxury-gold shrink-0 mt-0.5"></i>
+                <span><strong>High-Yield Ready Cash Flow:</strong> Turnkey executive apartments generating <strong>8.5% to 11.5% NET annual rental income</strong> — 100% tax-free.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-luxury-gold shrink-0 mt-0.5"></i>
+                <span><strong>DLD Escrow &amp; Exit Liquidity:</strong> Every dirham is deposited exclusively into RERA-regulated project Escrow accounts, with strategic exit timing before final handover.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-luxury flex items-center justify-between gap-4">
+            <a href="#register-inbox" onclick="prefillObjective('Investor: Maximum ROI & Capital Growth')" class="px-6 py-3 rounded-full btn-gold text-xs sm:text-sm font-semibold">
+              Book Appointment
+            </a>
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERACTIVE DUBAI CAPITAL GROWTH & DLD LEGAL FEE SIMULATOR -->
+      <div class="bento-card p-6 sm:p-8 border-2 border-luxury-gold">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-luxury-gold flex items-center gap-1.5">
+              <i data-lucide="calculator" class="w-4 h-4"></i> Interactive Investment &amp; DLD Simulator
+            </span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-luxury-primary">
+              Simulate Your Dubai Property ROI &amp; Legal Costs
+            </h3>
+            <p class="text-xs sm:text-sm text-luxury-secondary">
+              Adjust your target acquisition value to see live DLD 4% registration fees, 5-year projected capital growth, net annual rental cash flow, and 10-Year Golden Visa eligibility.
+            </p>
+
+            <div class="pt-2">
+              <div class="flex justify-between text-xs font-bold uppercase mb-2">
+                <span>Property Acquisition Value:</span>
+                <span id="calcPriceDisplay" class="text-luxury-gold text-base">AED 2,500,000</span>
+              </div>
+              <input id="calcPriceRange" type="range" min="800000" max="15000000" step="100000" value="2500000" class="w-full accent-[#7A5A1E] cursor-pointer" />
+              <div class="flex justify-between text-[11px] text-luxury-muted mt-1">
+                <span>AED 800K</span>
+                <span>AED 2M (Golden Visa Threshold)</span>
+                <span>AED 15M+</span>
+              </div>
+            </div>
+
+            <div class="flex gap-2 pt-2">
+              <button type="button" data-strategy="investor" class="calc-strat-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold border border-luxury-gold bg-[#7A5A1E] text-white transition">
+                High-Yield Investor (9.2% Net)
+              </button>
+              <button type="button" data-strategy="enduser" class="calc-strat-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold border border-luxury text-luxury-primary transition">
+                Prime Family Villa (14% YoY Growth)
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+              <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">Est. Annual Net Rent</span>
+              <span id="calcNetRent" class="font-display text-2xl font-bold text-luxury-gold mt-1 block">AED 230,000</span>
+              <span class="text-[11px] text-emerald-600 font-semibold mt-1 block">0% Income Tax</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+              <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">5-Yr Projected Value</span>
+              <span id="calcFiveYearVal" class="font-display text-2xl font-bold text-luxury-primary mt-1 block">AED 3,850,000</span>
+              <span id="calcGainBadge" class="text-[11px] text-luxury-gold font-semibold mt-1 block">+AED 1.35M Equity</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+              <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">DLD 4% Fee + Trustee</span>
+              <span id="calcDldFee" class="font-display text-2xl font-bold text-luxury-primary mt-1 block">AED 104,200</span>
+              <span class="text-[11px] text-luxury-muted mt-1 block">Official Title Deed / Oqood</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+              <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">UAE Golden Visa</span>
+              <span id="calcGoldenVisa" class="font-display text-xl font-bold text-emerald-600 mt-1 block">✓ 10-Yr Eligible</span>
+              <span id="calcGoldenVisaSub" class="text-[11px] text-luxury-muted mt-1 block">Includes Family &amp; Staff</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. SIGNATURE PROPERTIES PORTFOLIO (Dynamic Categories + Admin CRUD)
+       ======================================================================== -->
+  <section id="portfolio" class="py-16 md:py-24 bg-luxury-elevated/45 border-y border-luxury">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-luxury-gold">Curated Inventory • Ready &amp; Off-Plan</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-luxury-primary mt-2">
+            Signature Dubai <span class="italic gold-gradient-text">Properties</span>
+          </h2>
+          <p class="text-sm sm:text-base text-luxury-secondary mt-2 max-w-2xl">
+            Handpicked waterfront residences, family sanctuaries, and high-ROE investment opportunities vetted by our 2,000+ transaction advisory committee.
+          </p>
+        </div>
+
+        <!-- Dynamic Category Filter Pills -->
+        <div id="categoryFilterContainer" class="flex flex-wrap items-center gap-2">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+
+      <!-- Properties Grid -->
+      <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. LEADERSHIP & ADVISORY TEAM SECTION (Highlighting Akshay + Specialists)
+       ======================================================================== -->
+  <section id="team" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-luxury-gold">Leadership &amp; Senior Advisory Board</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-luxury-primary mt-2">
+          Meet the Specialists Behind <span class="italic gold-gradient-text">2,000+ Sold Properties</span>
+        </h2>
+        <p class="text-sm sm:text-base text-luxury-secondary mt-3">
+          Led by Managing Principal <strong>Akshay</strong>, our multidisciplinary team combines senior investment strategists, RERA legal conveyancers, and luxury residential specialists.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
+        
+        <!-- Team Member 1: AKSHAY (Principal / Direct WhatsApp Connection) -->
+        <div class="bento-card overflow-hidden flex flex-col justify-between border-2 border-luxury-gold">
+          <div>
+            <div class="relative aspect-[4/5] bg-[#09100D] overflow-hidden">
+              <img src="assets/logo.jpg" alt="Akshay - Managing Principal at Rich World Real Estate" class="w-full h-full object-contain p-6 bg-gradient-to-b from-[#09100D] to-[#14201B]" />
+              <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#D9B76F] text-[#09100D] text-[10px] font-extrabold uppercase tracking-wider">
+                Founder &amp; Principal Advisor
+              </div>
+              <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-[#09100D]/85 backdrop-blur-md border border-[#D9B76F]/30 text-white">
+                <p class="text-[11px] text-[#D9B76F] font-bold uppercase tracking-widest">Direct Executive Desk</p>
+                <p class="font-display text-2xl font-bold">Akshay</p>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="text-xs font-bold uppercase tracking-wider text-luxury-gold">Managing Director &amp; Senior Wealth Strategist</p>
+              <p class="text-xs text-luxury-secondary mt-2.5 leading-relaxed">
+                Spearheading Rich World Real Estate with a track record of over <strong>2,000+ properties sold</strong>. Advises global investors on high-yield portfolio compounding and guides families to bespoke waterfront &amp; golf-course sanctuaries.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-semibold">
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">UHNWI Portfolios</span>
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">Off-Plan Arbitrage</span>
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">Dream Villas</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-3 border-t border-luxury flex items-center justify-between gap-2">
+            <a href="#register-inbox" onclick="prefillAdvisor('Akshay (Managing Principal)')" class="flex-1 py-2.5 rounded-full btn-gold text-center text-xs font-semibold">
+              Book Appointment
+            </a>
+            <!-- WhatsApp Icon-Only Button (Rule 5) -->
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10 shrink-0">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 2: End-User Luxury Residences Director -->
+        <div class="bento-card overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/5] bg-[#14201B] overflow-hidden">
+              <img src="assets/como_interior_1.jpg" alt="Elena Rostova - Director of End-User Luxury Sanctuaries" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#09100D] via-transparent to-transparent"></div>
+              <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-[#09100D]/85 backdrop-blur-md border border-[#D9B76F]/30 text-white">
+                <p class="text-[10px] text-[#D9B76F] font-bold uppercase tracking-widest">Dream Home Division</p>
+                <p class="font-display text-xl font-bold">Elena Rostova</p>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="text-xs font-bold uppercase tracking-wider text-luxury-gold">Director of End-User Luxury Residences</p>
+              <p class="text-xs text-luxury-secondary mt-2.5 leading-relaxed">
+                Dedicated to helping relocating families and executives find their forever home in Palm Jumeirah, Dubai Hills Estate, and Emirates Hills with complete school &amp; lifestyle onboarding.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-semibold">
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">Waterfront Penthouses</span>
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">Golf Estates</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-3 border-t border-luxury flex items-center justify-between gap-2">
+            <a href="#register-inbox" onclick="prefillAdvisor('Elena Rostova (End-User Sanctuary Division)')" class="flex-1 py-2.5 rounded-full btn-gold text-center text-xs font-semibold">
+              Book Appointment
+            </a>
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10 shrink-0">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 3: Head of Institutional & Off-Plan Capital Growth -->
+        <div class="bento-card overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/5] bg-[#14201B] overflow-hidden">
+              <img src="assets/mbp_project_towers.webp" alt="Tariq Al-Mansoori - Head of Capital Growth & Off-Plan" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#09100D] via-transparent to-transparent"></div>
+              <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-[#09100D]/85 backdrop-blur-md border border-[#D9B76F]/30 text-white">
+                <p class="text-[10px] text-[#D9B76F] font-bold uppercase tracking-widest">Investor ROE Desk</p>
+                <p class="font-display text-xl font-bold">Tariq Al-Mansoori</p>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="text-xs font-bold uppercase tracking-wider text-luxury-gold">Head of Investor Capital &amp; Off-Plan Strategy</p>
+              <p class="text-xs text-luxury-secondary mt-2.5 leading-relaxed">
+                Quantitative real estate analyst specializing in 30/70 &amp; post-handover payment plans, pre-launch developer allocations, and high-liquidity exit timing across emerging masterplans.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-semibold">
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">&gt;140% ROE Models</span>
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">Pre-Launch Access</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-3 border-t border-luxury flex items-center justify-between gap-2">
+            <a href="#register-inbox" onclick="prefillAdvisor('Tariq Al-Mansoori (Investor Capital Desk)')" class="flex-1 py-2.5 rounded-full btn-gold text-center text-xs font-semibold">
+              Book Appointment
+            </a>
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10 shrink-0">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 4: RERA Legal, Escrow & Golden Visa Counsel -->
+        <div class="bento-card overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/5] bg-[#14201B] overflow-hidden">
+              <img src="assets/srk_unit_interior.webp" alt="Siddharth Verma - RERA Legal & Golden Visa Counsel" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#09100D] via-transparent to-transparent"></div>
+              <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-[#09100D]/85 backdrop-blur-md border border-[#D9B76F]/30 text-white">
+                <p class="text-[10px] text-[#D9B76F] font-bold uppercase tracking-widest">DLD Legal &amp; Visa Desk</p>
+                <p class="font-display text-xl font-bold">Siddharth Verma</p>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="text-xs font-bold uppercase tracking-wider text-luxury-gold">Head of Conveyancing &amp; Golden Visa Structuring</p>
+              <p class="text-xs text-luxury-secondary mt-2.5 leading-relaxed">
+                Oversees RERA Law No. 8 Escrow verification, Oqood &amp; Title Deed registration, Power of Attorney remote closings, and 10-Year UAE Golden Visa residency applications.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-semibold">
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">DLD Conveyancing</span>
+                <span class="px-2.5 py-1 rounded-lg bg-luxury-elevated text-luxury-primary">10-Yr Golden Visa</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-3 border-t border-luxury flex items-center justify-between gap-2">
+            <a href="#register-inbox" onclick="prefillAdvisor('Siddharth Verma (Legal & Golden Visa Desk)')" class="flex-1 py-2.5 rounded-full btn-gold text-center text-xs font-semibold">
+              Book Appointment
+            </a>
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10 shrink-0">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. DUBAI REAL ESTATE INVESTMENT BLOGS & EDITORIAL INSIGHTS (4 Articles)
+       ======================================================================== -->
+  <section id="blogs" class="py-16 md:py-24 bg-luxury-elevated/45 border-y border-luxury">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-luxury-gold">Intelligence &amp; Market Research</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-luxury-primary mt-2">
+            Dubai Real Estate <span class="italic gold-gradient-text">Investment Blogs</span>
+          </h2>
+          <p class="text-sm sm:text-base text-luxury-secondary mt-2 max-w-2xl">
+            Actionable legal guides, ROE case studies, and community analyses authored by our senior advisory team to help you invest and live in Dubai with total confidence.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-semibold text-luxury-gold">
+          <i data-lucide="book-open-check" class="w-4 h-4"></i>
+          <span>4 Complete Advisory Briefings Available</span>
+        </div>
+      </div>
+
+      <!-- Blogs Grid (4 In-Depth Blogs rendered by app.js) -->
+      <div id="blogsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. AI REAL ESTATE LAW & INVESTMENT BOT SECTION ("Rich World AI Advisor")
+       ======================================================================== -->
+  <section id="ai-advisor" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bento-card overflow-hidden border-2 border-luxury-gold shadow-luxury-gold">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          
+          <!-- Left Sidebar: Bot Capabilities & Legal Knowledge Base -->
+          <div class="lg:col-span-5 p-7 sm:p-9 bg-[#14201B] text-[#F2EDE0] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-[#09100D] border border-[#D9B76F]/50 p-1.5 flex items-center justify-center">
+                  <img src="assets/logo-transparent.png" alt="Rich World AI Advisor" class="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <span class="px-2.5 py-0.5 rounded-full bg-[#D9B76F]/20 text-[#D9B76F] text-[10px] font-bold uppercase tracking-widest">Trained on DLD &amp; RERA Law</span>
+                  <h3 class="font-display text-2xl font-bold text-white mt-0.5">Rich World Legal &amp; ROI AI Advisor</h3>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#C6C0B2] leading-relaxed">
+                Our specialized AI assistant is trained on official <strong>Dubai Land Department (DLD)</strong> and <strong>RERA legislation</strong>, 10-Year UAE Golden Visa regulations, buying fees, community rental yields, and Rich World’s portfolio of 2,000+ sold properties.
+              </p>
+
+              <div class="mt-6 space-y-3">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-[#D9B76F]">Trained Legal &amp; Investment Modules:</p>
+                <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-xs space-y-1">
+                  <p class="font-bold text-white">⚖️ RERA Escrow &amp; Oqood Protection</p>
+                  <p class="text-[#C6C0B2]">Law No. 8 of 2007 (Escrow Accounts), Law No. 13 of 2008 (Oqood Interim Registry), and Law No. 7 of 2006 (Foreign Freehold Ownership).</p>
+                </div>
+                <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-xs space-y-1">
+                  <p class="font-bold text-white">🛂 UAE 10-Year Golden Visa &amp; Tax Law</p>
+                  <p class="text-[#C6C0B2]">AED 2M property qualification (ready, off-plan &amp; mortgaged), 0% income tax, 0% capital gains tax, and family sponsorship.</p>
+                </div>
+                <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-xs space-y-1">
+                  <p class="font-bold text-white">📊 Transaction Fees &amp; Yield Structuring</p>
+                  <p class="text-[#C6C0B2]">4% DLD transfer fee, Trustee fees, RERA Smart Rental Index, Form F (MOU) clauses, and 30/70 vs 50/50 post-handover plans.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
+              <div class="text-xs text-[#C6C0B2]">
+                Need human executive counsel? Connect directly with <strong>Akshay</strong>:
+              </div>
+              <!-- WhatsApp Icon-Only Button (Rule 5) -->
+              <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-11 h-11 shrink-0">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Live Interactive AI Chat Interface -->
+          <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between bg-luxury-surface">
+            <div>
+              <!-- Quick Legal & ROI Prompt Pills -->
+              <div class="mb-4">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-luxury-muted block mb-2">Instant Legal &amp; Strategy Topics (Click to Ask):</span>
+                <div class="flex flex-wrap gap-2">
+                  <button type="button" onclick="askBotQuestion('Explain Dubai RERA Escrow Law No. 8 and Oqood registration for off-plan buyers.')" class="px-3 py-1.5 rounded-full border border-luxury-gold bg-luxury-elevated hover:bg-[#7A5A1E] hover:text-white text-xs font-medium transition">
+                    ⚖️ RERA Escrow &amp; Oqood Law
+                  </button>
+                  <button type="button" onclick="askBotQuestion('How do I qualify for the 10-Year UAE Golden Visa through property investment?')" class="px-3 py-1.5 rounded-full border border-luxury-gold bg-luxury-elevated hover:bg-[#7A5A1E] hover:text-white text-xs font-medium transition">
+                    🛂 10-Year Golden Visa Rules
+                  </button>
+                  <button type="button" onclick="askBotQuestion('What are all the legal buying costs in Dubai? (4% DLD fee, Trustee, Agency, Service Charges)')" class="px-3 py-1.5 rounded-full border border-luxury-gold bg-luxury-elevated hover:bg-[#7A5A1E] hover:text-white text-xs font-medium transition">
+                    💰 4% DLD &amp; Buying Costs
+                  </button>
+                  <button type="button" onclick="askBotQuestion('How does Rich World help end-users find their dream home vs helping investors maximize ROI?')" class="px-3 py-1.5 rounded-full border border-luxury-gold bg-luxury-elevated hover:bg-[#7A5A1E] hover:text-white text-xs font-medium transition">
+                    🏡 Dream Home vs Investor ROI
+                  </button>
+                  <button type="button" onclick="askBotQuestion('Can foreigners buy 100% freehold property in Dubai and repatriate 100% of profits?')" class="px-3 py-1.5 rounded-full border border-luxury-gold bg-luxury-elevated hover:bg-[#7A5A1E] hover:text-white text-xs font-medium transition">
+                    🌍 Foreign Ownership &amp; Taxes
+                  </button>
+                </div>
+              </div>
+
+              <!-- Chat Messages Box -->
+              <div id="botMessagesContainer" class="h-80 sm:h-96 overflow-y-auto p-4 rounded-2xl bg-luxury-primary border border-luxury space-y-4">
+                <!-- Initial Bot Greeting populated by app.js -->
+              </div>
+            </div>
+
+            <!-- Chat Input Form -->
+            <form id="botChatForm" class="mt-4 flex items-center gap-2">
+              <input id="botUserInput" type="text" placeholder="Ask about Dubai RERA laws, Golden Visa, 4% DLD fees, yields, or properties..." class="flex-1 px-4 py-3.5 rounded-2xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm text-luxury-primary" required />
+              <button type="submit" class="px-5 py-3.5 rounded-2xl btn-gold text-sm font-semibold inline-flex items-center gap-2 shrink-0">
+                <span>Ask AI</span>
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. PRIORITY USER REGISTRATION INBOX & CONTACT SECTION ("Bandeja de Registro")
+       ======================================================================== -->
+  <section id="register-inbox" class="py-16 md:py-24 bg-luxury-elevated/50 border-t border-luxury">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left Info Column -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-luxury-gold">Priority Client Registration Inbox</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-luxury-primary leading-tight">
+            Start Your Journey with <span class="italic gold-gradient-text">Rich World Real Estate</span>
+          </h2>
+          <p class="text-sm sm:text-base text-luxury-secondary leading-relaxed">
+            Register your profile below to receive a bespoke property dossier or schedule a private 1-on-1 strategy consultation with <strong>Akshay</strong> and our senior advisory desk. All inquiries are logged directly into our priority CRM &amp; Jota executive pipeline.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="bento-card p-5 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-[#7A5A1E]/15 flex items-center justify-center text-luxury-gold shrink-0">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-sm text-luxury-primary">2,000+ Properties Sold Expertise</h3>
+                <p class="text-xs text-luxury-secondary mt-1">Direct access to off-market trophy villas, pre-launch developer allocations, and distressed high-ROE resales.</p>
+              </div>
+            </div>
+
+            <div class="bento-card p-5 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-[#7A5A1E]/15 flex items-center justify-center text-luxury-gold shrink-0">
+                <i data-lucide="file-check-2" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-sm text-luxury-primary">Zero-Commission Off-Plan Advisory</h3>
+                <p class="text-xs text-luxury-secondary mt-1">For primary developer acquisitions, our comprehensive legal, escrow, and ROI accompaniment carries 0% buyer agency commission.</p>
+              </div>
+            </div>
+
+            <!-- Direct Executive WhatsApp Card (Rule 5: Icon-Only Button) -->
+            <div class="bento-card p-5 flex items-center justify-between gap-4 border-luxury-gold">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-luxury-gold block">Direct Executive Channel</span>
+                <h3 class="font-display text-xl font-bold text-luxury-primary">Connect Directly with Akshay</h3>
+                <p class="text-xs text-luxury-secondary mt-0.5">Instant WhatsApp priority desk for investors &amp; home buyers.</p>
+              </div>
+              <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-12 h-12 shrink-0">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Registration Form ("Bandeja de Registro" linked to Admin & Jota Exporter) -->
+        <div class="lg:col-span-7">
+          <div class="bento-card p-6 sm:p-9 border-2 border-luxury-gold">
+            <div class="flex items-center justify-between gap-4 pb-5 mb-6 border-b border-luxury">
+              <div>
+                <h3 class="font-display text-2xl sm:text-3xl font-bold text-luxury-primary">Client Registration &amp; Inquiry</h3>
+                <p class="text-xs text-luxury-muted mt-1">Encrypted Dual-Layer Registration • Direct Jota CRM Compatibility</p>
+              </div>
+              <div class="w-11 h-11 rounded-xl rw-logo-badge p-1.5 shrink-0">
+                <img src="assets/logo-transparent.png" alt="Rich World" class="w-full h-full object-contain" />
+              </div>
+            </div>
+
+            <form id="leadRegistrationForm" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">Full Name *</label>
+                  <input id="regName" type="text" required placeholder="e.g. Alexander Sterling" class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">WhatsApp / Phone (with Country Code) *</label>
+                  <input id="regPhone" type="tel" required placeholder="e.g. +1 647 555 0199 or +971 50..." class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">Email Address *</label>
+                  <input id="regEmail" type="email" required placeholder="client@domain.com" class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">Client Profile &amp; Objective *</label>
+                  <select id="regObjective" class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm">
+                    <option value="Investor: Maximum ROI & Capital Growth">Investor: Maximum ROI &amp; Capital Growth</option>
+                    <option value="End-User: Finding My Dream Home">End-User: Finding My Dream Home</option>
+                    <option value="UAE 10-Year Golden Visa Portfolio (AED 2M+)">UAE 10-Year Golden Visa Portfolio (AED 2M+)</option>
+                    <option value="Both: Family Residence + High-Yield Investment">Both: Family Residence + High-Yield Investment</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">Estimated Budget (AED) *</label>
+                  <select id="regBudget" class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm">
+                    <option value="1500000">AED 1.2M – 1.8M ($325K – $490K)</option>
+                    <option value="2500000" selected>AED 2.0M – 3.5M ($545K – $950K • Golden Visa)</option>
+                    <option value="5000000">AED 3.5M – 7.0M ($950K – $1.9M • Luxury Suite)</option>
+                    <option value="12000000">AED 7.0M – 20M+ ($1.9M – $5.5M+ • Trophy Villa/Penthouse)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">Acquisition Timeline *</label>
+                  <select id="regTimeline" class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm">
+                    <option value="Immediate (Ready to Book / Invest)">Immediate (Ready to Book / Invest)</option>
+                    <option value="Within 30 to 60 Days">Within 30 to 60 Days</option>
+                    <option value="Within 3 to 6 Months">Within 3 to 6 Months</option>
+                    <option value="Researching Market & Legal Framework">Researching Market &amp; Legal Framework</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-luxury-secondary mb-1.5">Preferred Communities, Property Type or Questions for Akshay</label>
+                <textarea id="regNotes" rows="3" placeholder="Tell us about your ideal home requirements (bedrooms, views, schools) or target investment yield..." class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury focus:border-luxury-gold outline-none text-sm"></textarea>
+              </div>
+
+              <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                <button type="submit" class="flex-1 py-4 px-6 rounded-full btn-gold text-sm font-bold tracking-wide shadow-luxury-gold flex items-center justify-center gap-2">
+                  <span>Book Appointment</span>
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                </button>
+                <!-- WhatsApp Icon-Only Button (Rule 5) -->
+                <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-12 h-12 shrink-0">
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+                  </svg>
+                </a>
+              </div>
+
+              <div id="regConfirmationBanner" class="hidden p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 text-xs text-luxury-primary">
+                <!-- Populated on submit -->
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. LUXURY FOOTER (With Mandatory "Developed by Tecnoemprende" Signature)
+       ======================================================================== -->
+  <footer class="bg-[#09100D] text-[#F2EDE0] border-t border-[#D9B76F]/30 pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3.5">
+            <img src="assets/logo.jpg" alt="Rich World Real Estate Logo" class="w-16 h-16 rounded-2xl object-cover border border-[#D9B76F]/40" />
+            <div>
+              <span class="font-display text-2xl font-bold uppercase tracking-wider text-[#D9B76F] block">Rich World</span>
+              <span class="text-xs uppercase tracking-[0.25em] text-[#C6C0B2] block">Real Estate • Dubai</span>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-[#C6C0B2] leading-relaxed max-w-md">
+            Premier real estate advisory in Dubai with over <strong>2,000+ properties sold</strong>. Dedicated to helping end-users find the home of their dreams and guiding global investors to maximize capital appreciation and rental yields under full DLD &amp; RERA protection.
+          </p>
+          <div class="flex items-center gap-3 pt-1">
+            <!-- WhatsApp Icon-Only Button (Rule 5) -->
+            <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-11 h-11">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+              </svg>
+            </a>
+            <a href="#register-inbox" class="px-5 py-2.5 rounded-full btn-gold text-xs font-semibold">Book Appointment</a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-2.5 text-xs text-[#C6C0B2]">
+          <p class="text-[#D9B76F] font-bold uppercase tracking-widest mb-3">Advisory Navigation</p>
+          <a href="#services" class="block hover:text-white transition">End-User Dream Homes</a>
+          <a href="#services" class="block hover:text-white transition">Investor Capital Growth</a>
+          <a href="#portfolio" class="block hover:text-white transition">Signature Dubai Portfolio</a>
+          <a href="#team" class="block hover:text-white transition">Akshay &amp; Leadership Team</a>
+          <a href="#blogs" class="block hover:text-white transition">Dubai Investment Blogs</a>
+          <a href="#ai-advisor" class="block hover:text-white transition">Dubai Law &amp; ROI AI Bot</a>
+        </div>
+
+        <div class="lg:col-span-4 space-y-2.5 text-xs text-[#C6C0B2]">
+          <p class="text-[#D9B76F] font-bold uppercase tracking-widest mb-3">Prime Dubai Freehold Corridors</p>
+          <p>📍 Downtown Dubai &amp; Burj Khalifa District</p>
+          <p>📍 Palm Jumeirah &amp; Dubai Harbour Waterfront</p>
+          <p>📍 Dubai Hills Estate &amp; Mohammed Bin Rashid City</p>
+          <p>📍 Dubai Islands &amp; Dubai Maritime City</p>
+          <p class="pt-2 text-[11px] text-[#8A968F]">All off-plan transactions are governed by Dubai Land Department (DLD) Escrow Law No. 8 of 2007 and Oqood Registry Law No. 13 of 2008.</p>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright & Mandatory Signature (Rule 8.4) -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8A968F]">
+        <p>© 2026 Rich World Real Estate Dubai. All Rights Reserved. • 2,000+ Properties Sold.</p>
+        <p class="tracking-wider font-medium text-[#D9B76F]/90">Developed by Tecnoemprende</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       FLOATING ACTION WIDGETS (WhatsApp Icon-Only + Quick AI Bot Trigger)
+       ======================================================================== -->
+  <div class="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+    <!-- Floating AI Legal Bot Trigger -->
+    <button type="button" onclick="document.getElementById('ai-advisor').scrollIntoView({behavior:'smooth'}); document.getElementById('botUserInput').focus();" aria-label="Open Dubai Real Estate AI Bot" class="w-12 h-12 rounded-full rw-logo-badge flex items-center justify-center shadow-lg hover:scale-105 transition" title="Ask Rich World Legal & ROI AI Bot">
+      <i data-lucide="bot" class="w-6 h-6 text-[#D9B76F]"></i>
+    </button>
+
+    <!-- Floating WhatsApp Button (STRICT RULE 5: ICON ONLY, ZERO TEXT) -->
+    <a href="https://wa.me/16479016999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-14 h-14 shadow-xl">
+      <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: FULL BLOG ARTICLE READER MODAL
+       ======================================================================== -->
+  <div id="blogReaderModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bento-card max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 relative border-2 border-luxury-gold">
+      <button type="button" onclick="closeBlogModal()" aria-label="Close Article" class="sticky top-2 float-right p-2 rounded-full bg-luxury-elevated border border-luxury text-luxury-primary hover:border-luxury-gold">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="blogModalContent">
+        <!-- Populated dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: ADMIN LOGIN & 5-TAB DASHBOARD (With Visitor Telemetry & Jota CRM Export)
+       ======================================================================== -->
+  <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md">
+    <div class="bento-card max-w-6xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-8 border-2 border-luxury-gold">
+      
+      <!-- Top Bar -->
+      <div class="flex items-center justify-between gap-4 pb-4 border-b border-luxury">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl rw-logo-badge p-1">
+            <img src="assets/logo-transparent.png" alt="Rich World Admin" class="w-full h-full object-contain" />
+          </div>
+          <div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-luxury-primary">Rich World Executive Admin &amp; Jota CRM Hub</h2>
+            <p class="text-xs text-luxury-muted">Visitor Analytics • Lead Registry Inbox • Catalog CRUD • Jota System Exporter</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="adminLogoutBtn" type="button" class="hidden px-3 py-1.5 rounded-xl border border-rose-500/40 text-rose-500 text-xs font-bold hover:bg-rose-500/10">
+            Logout
+          </button>
+          <button type="button" onclick="closeAdminModal()" aria-label="Close Admin Panel" class="p-2 rounded-xl border border-luxury text-luxury-primary">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW A: ADMIN LOGIN SCREEN -->
+      <div id="adminLoginView" class="py-10 max-w-md mx-auto space-y-5">
+        <div class="text-center space-y-2">
+          <span class="px-3 py-1 rounded-full bg-[#7A5A1E]/15 text-luxury-gold text-xs font-bold uppercase tracking-widest">Authorized Access Only</span>
+          <h3 class="font-display text-3xl font-bold text-luxury-primary">Executive Admin Sign-In</h3>
+          <p class="text-xs text-luxury-secondary">Access registered leads, real-time visitor traffic logs, Jota CRM exports, and mobile catalog management.</p>
+        </div>
+
+        <form id="adminLoginForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-luxury-secondary mb-1">Admin Email</label>
+            <input id="adminEmailInput" type="email" value="admin@richworld.ae" required class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-luxury-secondary mb-1">Admin Password</label>
+            <input id="adminPassInput" type="password" value="admin123" required class="w-full px-4 py-3 rounded-xl bg-luxury-primary border border-luxury text-sm" />
+          </div>
+          <p id="adminLoginError" class="hidden text-xs text-rose-500 font-semibold">Invalid credentials. Use admin@richworld.ae / admin123</p>
+          <button type="submit" class="w-full py-3.5 rounded-full btn-gold text-sm font-bold">Unlock Admin Dashboard</button>
+        </form>
+      </div>
+
+      <!-- VIEW B: AUTHENTICATED 5-TAB ADMIN DASHBOARD -->
+      <div id="adminDashboardView" class="hidden pt-5 space-y-6">
+        
+        <!-- Live Telemetry KPI Strip -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+          <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+            <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">Registered Leads</span>
+            <span id="kpiTotalLeads" class="font-display text-3xl font-bold text-luxury-gold">0</span>
+            <span class="text-[10px] text-emerald-600 font-semibold block">Jota CRM Ready</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+            <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">Total Site Visits</span>
+            <span id="kpiTotalVisits" class="font-display text-3xl font-bold text-luxury-primary">0</span>
+            <span id="kpiUniqueVisitors" class="text-[10px] text-luxury-muted block">Live Session Tracked</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+            <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">Active Properties</span>
+            <span id="kpiTotalProps" class="font-display text-3xl font-bold text-luxury-primary">0</span>
+            <span class="text-[10px] text-luxury-muted block">Dual-Layer Synced</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury">
+            <span class="text-[11px] uppercase tracking-wider text-luxury-muted block">Published Blogs</span>
+            <span id="kpiTotalBlogs" class="font-display text-3xl font-bold text-luxury-primary">4</span>
+            <span class="text-[10px] text-luxury-gold font-semibold block">SEO &amp; AI Indexed</span>
+          </div>
+        </div>
+
+        <!-- 5 Mandatory Tabs Navigation -->
+        <div class="flex flex-wrap gap-2 border-b border-luxury pb-3">
+          <button type="button" data-admintab="tab-leads" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#7A5A1E] text-white">
+            1. Leads, Visits &amp; Jota Export
+          </button>
+          <button type="button" data-admintab="tab-catalog" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold border border-luxury text-luxury-primary">
+            2. Properties CRUD (Canvas 800px)
+          </button>
+          <button type="button" data-admintab="tab-promos" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold border border-luxury text-luxury-primary">
+            3. Announcements &amp; Blogs
+          </button>
+          <button type="button" data-admintab="tab-categories" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold border border-luxury text-luxury-primary">
+            4. Dynamic Categories
+          </button>
+          <button type="button" data-admintab="tab-settings" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold border border-luxury text-luxury-primary">
+            5. Supabase &amp; 1-Click Backup
+          </button>
+        </div>
+
+        <!-- TAB 1: LEADS INBOX, VISITOR TELEMETRY & JOTA SYSTEM EXPORTER -->
+        <div id="tab-leads" class="admin-tab-panel space-y-6">
+          
+          <!-- JOTA SYSTEM INTEGRATION & EXPORT BAR -->
+          <div class="p-5 rounded-2xl bg-[#14201B] text-[#F2EDE0] border border-[#D9B76F]/40 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+            <div>
+              <span class="px-2.5 py-0.5 rounded-full bg-[#D9B76F]/20 text-[#D9B76F] text-[10px] font-bold uppercase tracking-widest">Jota Suite Compatible (SQLite / FastAPI / Excel)</span>
+              <h4 class="font-display text-xl font-bold text-white mt-1">Export Registered Leads &amp; Visitor Data to Jota System</h4>
+              <p class="text-xs text-[#C6C0B2] mt-0.5">
+                Extract all leads in Jota’s exact schema (<code class="text-[#D9B76F]">name, phone, clean_phone, email, budget_aed, budget_eur, objective, timeline, notes, crm_status</code>) or push directly to <code class="text-[#D9B76F]">127.0.0.1:8000</code>.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" onclick="exportLeadsJotaCSV()" class="px-4 py-2.5 rounded-xl bg-[#D9B76F] text-[#09100D] text-xs font-extrabold hover:brightness-110 transition flex items-center gap-1.5">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                <span>Export Jota CSV / Excel</span>
+              </button>
+              <button type="button" onclick="exportLeadsJotaJSON()" class="px-4 py-2.5 rounded-xl border border-[#D9B76F] text-[#D9B76F] text-xs font-bold hover:bg-[#D9B76F]/15 transition flex items-center gap-1.5">
+                <i data-lucide="file-json" class="w-4 h-4"></i>
+                <span>Export Jota JSON</span>
+              </button>
+              <button type="button" onclick="pushLeadsToJotaLocalAPI()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-500 transition flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+                <span>Sync to Local Jota API (:8000)</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="jotaSyncStatusMsg" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+          <!-- Registered Users / Leads Table -->
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h4 class="font-display text-xl font-bold text-luxury-primary">Registered Client Inbox (Bandeja de Contactos)</h4>
+              <button type="button" onclick="addDemoLead()" class="px-3 py-1.5 rounded-xl border border-luxury-gold text-xs font-semibold text-luxury-gold hover:bg-[#7A5A1E]/10">
+                + Generate Sample Investor Lead
+              </button>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-luxury">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-luxury-elevated text-luxury-secondary uppercase tracking-wider">
+                  <tr>
+                    <th class="p-3">Client / Date</th>
+                    <th class="p-3">Phone / Email</th>
+                    <th class="p-3">Objective &amp; Timeline</th>
+                    <th class="p-3">Budget (AED / EUR)</th>
+                    <th class="p-3">CRM Status</th>
+                    <th class="p-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminLeadsTableBody" class="divide-y divide-black/10">
+                  <!-- Populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Visitor Traffic & Telemetry Log -->
+          <div class="space-y-3 pt-4 border-t border-luxury">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h4 class="font-display text-xl font-bold text-luxury-primary">Real-Time Visitor Telemetry &amp; Session Registry</h4>
+                <p class="text-xs text-luxury-muted">Tracks visitor arrivals, device profiles, referrers, and viewed sections.</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="simulateVisitorSession()" class="px-3 py-1.5 rounded-xl border border-luxury text-xs font-semibold hover:border-luxury-gold">
+                  + Simulate New Visit
+                </button>
+                <button type="button" onclick="exportVisitsCSV()" class="px-3 py-1.5 rounded-xl border border-luxury-gold text-xs font-semibold text-luxury-gold">
+                  Export Visits CSV
+                </button>
+              </div>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-luxury max-h-64">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-luxury-elevated text-luxury-secondary uppercase tracking-wider">
+                  <tr>
+                    <th class="p-3">Timestamp</th>
+                    <th class="p-3">Session ID</th>
+                    <th class="p-3">Device / Platform</th>
+                    <th class="p-3">Source / Referrer</th>
+                    <th class="p-3">Interactions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminVisitsTableBody" class="divide-y divide-black/10">
+                  <!-- Populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: PROPERTIES CATALOG CRUD (With HTML5 Canvas 800x800 Image Compressor) -->
+        <div id="tab-catalog" class="admin-tab-panel hidden space-y-6">
+          <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury">
+            <h4 class="font-display text-xl font-bold text-luxury-primary mb-3">Add or Edit Signature Property (Mobile Camera Canvas Engine)</h4>
+            <form id="adminPropertyForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+              <input id="propEditId" type="hidden" value="" />
+              <div>
+                <label class="font-bold uppercase block mb-1">Property Title *</label>
+                <input id="propTitle" type="text" required placeholder="e.g. Bulgari Lighthouse Penthouse" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              </div>
+              <div>
+                <label class="font-bold uppercase block mb-1">Location / Community *</label>
+                <input id="propLocation" type="text" required placeholder="e.g. Jumeirah Bay Island" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              </div>
+              <div>
+                <label class="font-bold uppercase block mb-1">Price (AED) *</label>
+                <input id="propPriceAED" type="number" required placeholder="3500000" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              </div>
+              <div>
+                <label class="font-bold uppercase block mb-1">Category *</label>
+                <select id="propCategory" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury"></select>
+              </div>
+              <div>
+                <label class="font-bold uppercase block mb-1">ROI / Yield Highlight *</label>
+                <input id="propRoi" type="text" required placeholder="e.g. 9.5% Projected Net Yield" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              </div>
+              <div>
+                <label class="font-bold uppercase block mb-1">Payment Plan / Specs *</label>
+                <input id="propPlan" type="text" required placeholder="e.g. 60/40 Plan • 3 BR • 2,150 Sq.Ft" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="font-bold uppercase block mb-1">Advisory Description *</label>
+                <input id="propDesc" type="text" required placeholder="Key highlights for end-users and investors..." class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              </div>
+              <div>
+                <label class="font-bold uppercase block mb-1">Upload Photo (Auto-Compressed 800x800)</label>
+                <input id="propImageFile" type="file" accept="image/*" class="w-full text-xs" />
+                <input id="propImageData" type="hidden" value="" />
+              </div>
+              <div class="sm:col-span-3 flex items-center gap-3 pt-2">
+                <button type="submit" class="px-6 py-2.5 rounded-full btn-gold font-bold">Save Property to Catalog</button>
+                <button type="button" onclick="resetPropertyForm()" class="px-4 py-2.5 rounded-full border border-luxury">Clear Form</button>
+                <span id="canvasCompressStatus" class="text-[11px] text-emerald-600 font-semibold"></span>
+              </div>
+            </form>
+          </div>
+
+          <div id="adminCatalogList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Populated by app.js -->
+          </div>
+        </div>
+
+        <!-- TAB 3: ANNOUNCEMENTS & BLOGS MANAGER -->
+        <div id="tab-promos" class="admin-tab-panel hidden space-y-6">
+          <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury space-y-3">
+            <h4 class="font-display text-xl font-bold text-luxury-primary">Live Top Announcement Banner</h4>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input id="adminAnnouncementInput" type="text" class="flex-1 px-4 py-2.5 rounded-xl bg-luxury-surface border border-luxury text-xs" />
+              <button type="button" onclick="saveAnnouncementBanner()" class="px-5 py-2.5 rounded-full btn-gold text-xs font-bold">Update Live Banner</button>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury space-y-4">
+            <h4 class="font-display text-xl font-bold text-luxury-primary">Publish New Dubai Real Estate Blog Article</h4>
+            <form id="adminBlogForm" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <input id="blogTitleInput" type="text" required placeholder="Blog Headline..." class="px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              <input id="blogCategoryInput" type="text" required placeholder="Category (e.g. Legal & RERA / Capital Growth)" class="px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury" />
+              <textarea id="blogSummaryInput" rows="2" required placeholder="Executive Summary..." class="sm:col-span-2 px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury"></textarea>
+              <textarea id="blogBodyInput" rows="4" required placeholder="Full article content (paragraphs separated by blank lines)..." class="sm:col-span-2 px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury"></textarea>
+              <div class="sm:col-span-2">
+                <button type="submit" class="px-6 py-2.5 rounded-full btn-gold font-bold">Publish Blog Article</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB 4: DYNAMIC CATEGORIES ENGINE -->
+        <div id="tab-categories" class="admin-tab-panel hidden space-y-5">
+          <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury space-y-4">
+            <h4 class="font-display text-xl font-bold text-luxury-primary">Dynamic Portfolio Categories Engine</h4>
+            <p class="text-xs text-luxury-secondary">Add or remove property categories; portfolio filters update in 0ms without touching code.</p>
+            <div class="flex gap-2 max-w-md">
+              <input id="newCategoryInput" type="text" placeholder="New Category Name..." class="flex-1 px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury text-xs" />
+              <button type="button" onclick="addDynamicCategory()" class="px-5 py-2.5 rounded-full btn-gold text-xs font-bold">Add Category</button>
+            </div>
+            <div id="adminCategoriesList" class="flex flex-wrap gap-2 pt-2">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: SUPABASE DUAL-LAYER & 1-CLICK JSON BACKUP/RESTORE -->
+        <div id="tab-settings" class="admin-tab-panel hidden space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury space-y-3">
+              <h4 class="font-display text-xl font-bold text-luxury-primary">Supabase Cloud Dual-Layer Connection</h4>
+              <p class="text-xs text-luxury-secondary">Connect your Supabase project for asynchronous cloud replication alongside instant 0ms localStorage boot.</p>
+              <input id="supaUrlInput" type="url" placeholder="https://your-project.supabase.co" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury text-xs" />
+              <input id="supaKeyInput" type="password" placeholder="Supabase Anon / Service Key" class="w-full px-3 py-2.5 rounded-xl bg-luxury-surface border border-luxury text-xs" />
+              <button type="button" onclick="saveSupabaseConfig()" class="px-5 py-2.5 rounded-full btn-gold text-xs font-bold">Save &amp; Sync Cloud</button>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury space-y-3">
+              <h4 class="font-display text-xl font-bold text-luxury-primary">1-Click Full System JSON Backup &amp; Restore</h4>
+              <p class="text-xs text-luxury-secondary">Download or restore a complete snapshot of Properties, Registered Leads, Visitor Logs, Blogs, and Categories.</p>
+              <div class="flex flex-wrap gap-3 pt-2">
+                <button type="button" onclick="downloadFullSystemBackup()" class="px-5 py-2.5 rounded-full btn-gold text-xs font-bold flex items-center gap-1.5">
+                  <i data-lucide="download" class="w-4 h-4"></i> Download Full Backup (.json)
+                </button>
+                <label class="px-5 py-2.5 rounded-full border border-luxury-gold text-xs font-bold cursor-pointer hover:bg-[#7A5A1E]/10 flex items-center gap-1.5">
+                  <i data-lucide="upload" class="w-4 h-4"></i> Restore JSON Backup
+                  <input type="file" accept=".json" onchange="restoreFullSystemBackup(event)" class="hidden" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
