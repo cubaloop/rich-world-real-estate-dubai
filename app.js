@@ -8,7 +8,6 @@ const WHATSAPP_URL = "https://wa.me/16479016999";
 const USD_RATE = 3.6725;
 const EUR_RATE = 3.98;
 
-// Default Categories
 const DEFAULT_CATEGORIES = [
   "All",
   "Dream Home Sanctuary",
@@ -17,7 +16,6 @@ const DEFAULT_CATEGORIES = [
   "Branded Residences"
 ];
 
-// Default Curated Properties (6 Signature Assets for End-Users & Investors)
 const DEFAULT_PROPERTIES = [
   {
     id: "prop_1",
@@ -25,7 +23,7 @@ const DEFAULT_PROPERTIES = [
     location: "Palm Jumeirah (Prime Trunk Waterfront)",
     category: "Waterfront Trophy",
     priceAED: 7800000,
-    roiBadge: "18% YoY Capital Growth • Trophy Asset",
+    roiBadge: "18% YoY Growth • Trophy",
     planSpecs: "60/40 Plan • 3 BR + Maid • 3,120 Sq.Ft",
     image: "assets/como_residences.jpg",
     description: "Architectural masterpiece on Palm Jumeirah offering 360-degree Arabian Gulf & Burj Al Arab panoramas, private elevator lobby, and resort beach club sanctuary for discerning families."
@@ -36,7 +34,7 @@ const DEFAULT_PROPERTIES = [
     location: "Downtown Dubai (Burj Khalifa Corridor)",
     category: "Branded Residences",
     priceAED: 4100000,
-    roiBadge: "8.8% Projected Net Yield • Branded Trophy",
+    roiBadge: "8.8% Est. Net Yield",
     planSpecs: "70/30 Plan • 2 BR + Private Pool • 1,480 Sq.Ft",
     image: "assets/mbp_project_towers.webp",
     description: "Co-engineered by Binghatti & Mercedes-Benz. Features private sky plunge pool, direct Burj Khalifa views, smart solar facade, and ultra-liquid global resale demand."
@@ -47,7 +45,7 @@ const DEFAULT_PROPERTIES = [
     location: "Dubai Islands (Island A Beachfront)",
     category: "High-Yield Off-Plan",
     priceAED: 2400000,
-    roiBadge: "> 155% ROE via 50/50 Post-Handover",
+    roiBadge: "> 155% ROE (50/50 Plan)",
     planSpecs: "50/50 3-Yr Post-Handover • 2 BR • 1,260 Sq.Ft",
     image: "assets/allegro_beach_pool.webp",
     description: "Pay only 50% until handover and let 3 years of luxury holiday-home rental income cover your post-handover installments. Qualifies directly for the 10-Year UAE Golden Visa."
@@ -58,7 +56,7 @@ const DEFAULT_PROPERTIES = [
     location: "Dubai Hills Estate (Emerald Fairways)",
     category: "Dream Home Sanctuary",
     priceAED: 6450000,
-    roiBadge: "Top End-User Family Sanctuary • Ready Soon",
+    roiBadge: "End-User Family Sanctuary",
     planSpecs: "Ready / Mortgage Eligible • 4 BR Villa • 3,850 Sq.Ft",
     image: "assets/interior.jpg",
     description: "Minutes from GEMS International Schools, Dubai Hills Mall, and King's College Hospital. Vastu-compliant layout with landscaped private garden and championship golf proximity."
@@ -69,7 +67,7 @@ const DEFAULT_PROPERTIES = [
     location: "Dubai Maritime City (Peninsula Seafront)",
     category: "High-Yield Off-Plan",
     priceAED: 2950000,
-    roiBadge: "30/70 Leverage • Only 30% Pre-Handover",
+    roiBadge: "Only 30% Pre-Handover",
     planSpecs: "30/70 Payment Plan • 2 BR + Study • 1,340 Sq.Ft",
     image: "assets/srk_maritime_city.webp",
     description: "Capture 100% of prime seafront capital appreciation while deploying only 30% equity during construction. Unobstructed cruise terminal and open ocean views."
@@ -80,14 +78,13 @@ const DEFAULT_PROPERTIES = [
     location: "Dubailand Residential Hub (DLRC)",
     category: "High-Yield Off-Plan",
     priceAED: 1650000,
-    roiBadge: "9.4% – 10.5% Est. Net Rental Yield",
+    roiBadge: "9.4% – 10.5% Net Yield",
     planSpecs: "60/40 Plan • Fully Furnished 2 BR • 1,150 Sq.Ft",
     image: "assets/kore_building.webp",
     description: "Turnkey fully furnished residence featuring Technogym wellness club, cryo recovery, padel courts, and co-working lounges—engineered for maximum executive rental occupancy."
   }
 ];
 
-// Default 4 In-Depth Dubai Real Estate Investment Blogs
 const DEFAULT_BLOGS = [
   {
     id: "blog_1",
@@ -155,7 +152,6 @@ const DEFAULT_BLOGS = [
   }
 ];
 
-// Initial Sample Leads for Admin Inbox & Jota Export Demo
 const DEFAULT_LEADS = [
   {
     id: "lead_rw_1001",
@@ -213,11 +209,9 @@ const DEFAULT_LEADS = [
   }
 ];
 
-// Global Reactive State
 const state = {
   currency: localStorage.getItem("rw_currency") || "AED",
-  lang: localStorage.getItem("rw_lang") || "en",
-  theme: localStorage.getItem("rw_theme") || "light", // Light-First Default (Rule 4.2)
+  theme: localStorage.getItem("rw_theme") || "light",
   selectedCategory: "All",
   calcStrategy: "investor",
   isAdminAuthenticated: sessionStorage.getItem("rw_admin_auth") === "true",
@@ -230,7 +224,7 @@ const state = {
 };
 
 // ============================================================================
-// 1. DUAL-LAYER PERSISTENCE BOOTSTRAP (0ms LocalStorage + Async Supabase)
+// 1. DUAL-LAYER PERSISTENCE BOOTSTRAP
 // ============================================================================
 function loadLocalState() {
   try {
@@ -239,7 +233,9 @@ function loadLocalState() {
     state.blogs = JSON.parse(localStorage.getItem("rw_blogs")) || DEFAULT_BLOGS;
     state.leads = JSON.parse(localStorage.getItem("rw_leads")) || DEFAULT_LEADS;
     state.visits = JSON.parse(localStorage.getItem("rw_visits")) || [];
-    state.announcement = localStorage.getItem("rw_announcement") || "🏆 RERA-Certified Dubai Brokerage • Over 2,000+ Properties Sold • 0% Income & Capital Gains Tax • 10-Year UAE Golden Visa Structuring";
+    state.announcement =
+      localStorage.getItem("rw_announcement") ||
+      "RERA-CERTIFIED DUBAI BROKERAGE • 2,000+ PROPERTIES SOLD • 10-YEAR UAE GOLDEN VISA ADVISORY";
   } catch (e) {
     state.categories = DEFAULT_CATEGORIES;
     state.properties = DEFAULT_PROPERTIES;
@@ -276,7 +272,7 @@ async function syncFromSupabase() {
       }
     }
   } catch (err) {
-    console.warn("[Dual-Layer Supabase Sync Notice]: Operating in resilient local mode.", err);
+    console.warn("[Dual-Layer Supabase Sync Notice]: Operating in resilient local mode.");
   }
 }
 
@@ -295,9 +291,8 @@ function recordVisitorArrival() {
     const ua = navigator.userAgent || "";
     const isMobile = /Mobile|Android|iPhone|iPad/i.test(ua);
     const deviceLabel = isMobile ? "📱 Mobile Smartphone" : "💻 Desktop Workstation";
-    const referrer = document.referrer ? new URL(document.referrer).hostname : "Direct / Organic Search (Dubai)";
+    const referrer = document.referrer ? new URL(document.referrer).hostname : "Direct / Organic Search";
 
-    // Seed 2 realistic prior visits if empty so Admin immediately sees rich telemetry
     if (state.visits.length === 0) {
       state.visits.push(
         {
@@ -305,7 +300,7 @@ function recordVisitorArrival() {
           timestamp: "2026-10-26 08:42:11",
           device: "📱 Mobile Smartphone (iOS)",
           source: "Google Maps / Direct",
-          interactions: "Viewed Hero, 2,000+ Track Record, Como Residences, Asked Legal AI Bot"
+          interactions: "Viewed Hero, 2,000+ Sold, Como Residences, Asked Legal AI Bot"
         },
         {
           id: "vis_tor88x",
@@ -359,7 +354,7 @@ window.simulateVisitorSession = function () {
 };
 
 // ============================================================================
-// 3. CURRENCY, THEME (LIGHT-FIRST) & BILINGUAL (EN / AR RTL) CONTROLLERS
+// 3. CURRENCY & THEME (LIGHT-FIRST) CONTROLLERS
 // ============================================================================
 function formatPrice(amountAED) {
   if (state.currency === "USD") {
@@ -369,69 +364,44 @@ function formatPrice(amountAED) {
   return "AED " + Math.round(amountAED).toLocaleString("en-US");
 }
 
+function setCurrency(cur) {
+  state.currency = cur;
+  localStorage.setItem("rw_currency", cur);
+
+  const aedBtns = [document.getElementById("currencyAED"), document.getElementById("drawerCurrencyAED")];
+  const usdBtns = [document.getElementById("currencyUSD"), document.getElementById("drawerCurrencyUSD")];
+
+  if (cur === "AED") {
+    aedBtns.forEach(b => {
+      if (b) b.className = "px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#7A5A1E] text-white transition-all text-[10px] sm:text-xs";
+    });
+    usdBtns.forEach(b => {
+      if (b) b.className = "px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-slate-600 dark:text-slate-300 transition-all text-[10px] sm:text-xs";
+    });
+  } else {
+    usdBtns.forEach(b => {
+      if (b) b.className = "px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-[#7A5A1E] text-white transition-all text-[10px] sm:text-xs";
+    });
+    aedBtns.forEach(b => {
+      if (b) b.className = "px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-slate-600 dark:text-slate-300 transition-all text-[10px] sm:text-xs";
+    });
+  }
+
+  updateSimulatorCalc();
+  renderCategoriesAndPortfolio();
+}
+
 function applyTheme() {
   const htmlEl = document.documentElement;
   const icons = [document.getElementById("themeIcon"), document.getElementById("drawerThemeIcon")];
   if (state.theme === "dark") {
-    htmlEl.classList.add("theme-dark");
+    htmlEl.classList.add("theme-dark", "dark");
     icons.forEach(i => i && i.setAttribute("data-lucide", "sun"));
   } else {
-    htmlEl.classList.remove("theme-dark");
+    htmlEl.classList.remove("theme-dark", "dark");
     icons.forEach(i => i && i.setAttribute("data-lucide", "moon"));
   }
   if (window.lucide) lucide.createIcons();
-}
-
-const I18N_DICT = {
-  en: {
-    nav_services: "Advisory Services",
-    nav_track: "2,000+ Sold",
-    nav_portfolio: "Signature Portfolio",
-    nav_team: "Our Team",
-    nav_blogs: "Investment Blogs",
-    nav_bot: "Dubai Law AI Bot",
-    nav_contact: "Contact",
-    cta_book: "Book Appointment",
-    hero_badge: "WELCOME TO RICH WORLD REAL ESTATE DUBAI • OVER 2,000+ PROPERTIES SOLD",
-    hero_title: 'Guiding Families to Their <span class="italic gold-gradient-text">Dream Sanctuary</span> &amp; Investors to <span class="italic gold-gradient-text">Maximum Capital Growth.</span>',
-    hero_subtitle: "Backed by a proven track record of <strong>more than 2,000+ properties sold</strong> across Dubai’s premier freehold destinations, <strong>Rich World Real Estate</strong> delivers tailored end-to-end accompaniment: helping end-users secure the home of their dreams and empowering global investors to multiply their capital through the highest-performing real estate assets in the market.",
-    pillar1_title: "For End-Users: Your Dream Home",
-    pillar2_title: "For Investors: Capital & Yield"
-  },
-  ar: {
-    nav_services: "خدماتنا الاستشارية",
-    nav_track: "+2,000 عقار مباع",
-    nav_portfolio: "محفظة العقارات الفاخرة",
-    nav_team: "فريق القيادة",
-    nav_blogs: "مدونة الاستثمار",
-    nav_bot: "المستشار الذكي للقوانين",
-    nav_contact: "سجل اهتمامك",
-    cta_book: "احجز استشارتك",
-    hero_badge: "مرحباً بكم في ريتش وورلد العقارية دبي • خبرة تتجاوز 2,000+ عقار مباع",
-    hero_title: 'نرشد العائلات إلى <span class="italic gold-gradient-text">منزل أحلامهم</span> والمستثمرين نحو <span class="italic gold-gradient-text">مضاعفة رأس المال.</span>',
-    hero_subtitle: "بخبرة موثقة تتجاوز <strong>أكثر من 2,000 عقار مباع</strong> في أرقى مناطق التملك الحر في دبي، تقدم شركة <strong>Rich World Real Estate</strong> مرافقة استشارية متكاملة للمشترين النهائيين للعثور على منزل الأحلام وللمستثمرين لتعظيم العوائد الرأسمالية والإيجارية.",
-    pillar1_title: "للمشترين النهائيين: منزل أحلامك",
-    pillar2_title: "للمستثمرين: نمو رأس المال والعائد"
-  }
-};
-
-function applyLanguage() {
-  const htmlEl = document.documentElement;
-  const langLabel = document.getElementById("langLabel");
-  if (state.lang === "ar") {
-    htmlEl.setAttribute("dir", "rtl");
-    htmlEl.setAttribute("lang", "ar");
-    if (langLabel) langLabel.textContent = "EN";
-  } else {
-    htmlEl.setAttribute("dir", "ltr");
-    htmlEl.setAttribute("lang", "en");
-    if (langLabel) langLabel.textContent = "العربية";
-  }
-  const dict = I18N_DICT[state.lang] || I18N_DICT.en;
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (dict[key]) el.innerHTML = dict[key];
-  });
 }
 
 // ============================================================================
@@ -449,25 +419,25 @@ function updateSimulatorCalc() {
   const annualNetRent = Math.round(priceAED * netYieldRate);
   const fiveYearVal = Math.round(priceAED * fiveYearGrowthMultiplier);
   const equityGain = fiveYearVal - priceAED;
-  const dldFee = Math.round(priceAED * 0.04) + 4200; // 4% DLD + AED 4,200 Trustee Office Fee
+  const dldFee = Math.round(priceAED * 0.04) + 4200;
 
   document.getElementById("calcPriceDisplay").textContent = formatPrice(priceAED);
   document.getElementById("calcNetRent").textContent = formatPrice(annualNetRent) + "/yr";
   document.getElementById("calcFiveYearVal").textContent = formatPrice(fiveYearVal);
-  document.getElementById("calcGainBadge").textContent = `+${formatPrice(equityGain)} Capital Gain`;
+  document.getElementById("calcGainBadge").textContent = `+${formatPrice(equityGain)} Gain`;
   document.getElementById("calcDldFee").textContent = formatPrice(dldFee);
 
   const gvEl = document.getElementById("calcGoldenVisa");
   const gvSub = document.getElementById("calcGoldenVisaSub");
   if (priceAED >= 2000000) {
     gvEl.textContent = "✓ 10-Yr Eligible";
-    gvEl.className = "font-display text-xl font-bold text-emerald-600 mt-1 block";
-    gvSub.textContent = "Full Family & Staff Sponsorship";
+    gvEl.className = "text-base sm:text-lg font-extrabold font-outfit text-emerald-600 mt-1 block";
+    gvSub.textContent = "Full Family Sponsor";
   } else {
     const diff = 2000000 - priceAED;
-    gvEl.textContent = "2-Yr Investor Visa";
-    gvEl.className = "font-display text-xl font-bold text-amber-600 mt-1 block";
-    gvSub.textContent = `Add ${formatPrice(diff)} for 10-Yr Golden Visa`;
+    gvEl.textContent = "2-Yr Visa";
+    gvEl.className = "text-base sm:text-lg font-extrabold font-outfit text-amber-600 mt-1 block";
+    gvSub.textContent = `+${formatPrice(diff)} for 10-Yr`;
   }
 }
 
@@ -479,19 +449,17 @@ function renderCategoriesAndPortfolio() {
   const grid = document.getElementById("propertiesGrid");
   if (!filterContainer || !grid) return;
 
-  // Render Filter Pills
   filterContainer.innerHTML = state.categories
     .map(cat => {
       const active = state.selectedCategory === cat;
-      return `<button type="button" onclick="selectCategoryFilter('${cat.replace(/'/g, "\\'")}')" class="px-4 py-2 rounded-full text-xs font-bold transition ${
+      return `<button type="button" onclick="selectCategoryFilter('${cat.replace(/'/g, "\\'")}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold transition ${
         active
           ? "btn-gold shadow-sm"
-          : "border border-luxury bg-luxury-surface text-luxury-secondary hover:border-luxury-gold"
+          : "border border-slate-300 dark:border-slate-700 bg-white/75 dark:bg-black/30 text-slate-700 dark:text-slate-200 hover:border-[#7A5A1E]"
       }">${cat}</button>`;
     })
     .join("");
 
-  // Filter Properties
   const filtered =
     state.selectedCategory === "All"
       ? state.properties
@@ -500,50 +468,47 @@ function renderCategoriesAndPortfolio() {
   grid.innerHTML = filtered
     .map(
       p => `
-    <article class="bento-card overflow-hidden flex flex-col justify-between group">
+    <article class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group">
       <div>
         <div class="relative aspect-[16/10] bg-[#09100D] overflow-hidden">
           <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#09100D]/85 via-transparent to-transparent"></div>
-          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#09100D]/80 backdrop-blur-md border border-[#D9B76F]/40 text-[#D9B76F] text-[10px] font-bold uppercase tracking-wider">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-[#D9B76F]/40 text-[#D9B76F] text-[10px] font-bold uppercase tracking-wider">
             ${p.category}
           </span>
-          <div class="absolute bottom-3 inset-x-3 flex items-end justify-between gap-2 text-white">
-            <div>
-              <p class="text-[11px] text-[#D9B76F] font-semibold">${p.location}</p>
-              <h3 class="font-display text-xl font-bold leading-snug">${p.title}</h3>
-            </div>
+          <div class="absolute bottom-3 inset-x-3 text-white">
+            <p class="text-[10px] text-[#D9B76F] font-bold uppercase tracking-wider">${p.location}</p>
+            <h3 class="font-cinzel text-base sm:text-lg font-bold leading-snug mt-0.5">${p.title}</h3>
           </div>
         </div>
 
         <div class="p-5 space-y-3">
-          <div class="flex items-center justify-between gap-2 pb-3 border-b border-luxury">
+          <div class="flex items-center justify-between gap-2 pb-3 border-b border-slate-200 dark:border-slate-800">
             <div>
-              <span class="text-[10px] uppercase tracking-wider text-luxury-muted block">Starting Allocation</span>
-              <span class="font-display text-2xl font-bold gold-gradient-text">${formatPrice(p.priceAED)}</span>
+              <span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold block">Starting Allocation</span>
+              <span class="font-outfit text-xl font-extrabold text-[#7A5A1E] dark:text-[#D9B76F]">${formatPrice(p.priceAED)}</span>
             </div>
-            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 text-[11px] font-bold">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">
               ${p.roiBadge}
             </span>
           </div>
 
-          <p class="text-xs font-semibold text-luxury-primary flex items-center gap-1.5">
-            <i data-lucide="layers" class="w-3.5 h-3.5 text-luxury-gold"></i>
+          <p class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-[#7A5A1E] dark:text-[#D9B76F]"></i>
             <span>${p.planSpecs}</span>
           </p>
 
-          <p class="text-xs text-luxury-secondary leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
             ${p.description}
           </p>
         </div>
       </div>
 
-      <div class="px-5 pb-5 pt-3 border-t border-luxury flex items-center justify-between gap-3">
-        <!-- Sober CTA Button (Rule 8.3) -->
-        <a href="#register-inbox" onclick="prefillPropertyInquiry('${p.title.replace(/'/g, "\\'")}', ${p.priceAED})" class="flex-1 py-2.5 px-4 rounded-full btn-gold text-center text-xs font-semibold tracking-wide">
+      <div class="px-5 pb-5 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+        <a href="#register-inbox" onclick="prefillPropertyInquiry('${p.title.replace(/'/g, "\\'")}', ${p.priceAED})" class="flex-1 py-2.5 px-4 rounded-full btn-gold text-center text-xs font-bold tracking-wide">
           Book Appointment
         </a>
-        <!-- WhatsApp Icon-Only Button (STRICT RULE 5: ZERO TEXT) -->
+        <!-- Strict Rule 5: Icon-Only WhatsApp Button -->
         <a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-10 h-10 shrink-0">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
@@ -595,40 +560,40 @@ function renderBlogs() {
   blogsGrid.innerHTML = state.blogs
     .map(
       b => `
-    <article class="bento-card overflow-hidden flex flex-col justify-between group">
+    <article class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group">
       <div>
         <div class="relative aspect-[16/10] bg-[#09100D] overflow-hidden">
           <img src="${b.image || 'assets/srk_sea_view.webp'}" alt="${b.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#09100D]/80 via-transparent to-transparent"></div>
-          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#09100D]/85 border border-[#D9B76F]/40 text-[#D9B76F] text-[10px] font-bold uppercase tracking-wider">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 border border-[#D9B76F]/40 text-[#D9B76F] text-[10px] font-bold uppercase tracking-wider">
             ${b.category}
           </span>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/70 text-white text-[10px] font-semibold">
+          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/75 text-white text-[10px] font-semibold">
             ${b.readTime || '6 Min Read'}
           </span>
         </div>
 
-        <div class="p-6 space-y-3">
-          <div class="flex items-center gap-2 text-[11px] text-luxury-muted font-semibold">
+        <div class="p-6 space-y-2.5">
+          <div class="flex items-center gap-2 text-[11px] text-slate-500 font-bold">
             <span>${b.date || 'October 2026'}</span>
-            <span>•</span>
-            <span class="text-luxury-gold">${b.author || 'Rich World Advisory'}</span>
+            <span>&bull;</span>
+            <span class="text-[#7A5A1E] dark:text-[#D9B76F]">${b.author || 'Rich World Advisory'}</span>
           </div>
-          <h3 class="font-display text-2xl font-bold text-luxury-primary leading-snug">
+          <h3 class="font-cinzel text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
             ${b.title}
           </h3>
-          <p class="text-xs sm:text-sm text-luxury-secondary leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             ${b.summary}
           </p>
         </div>
       </div>
 
-      <div class="px-6 pb-6 pt-3 border-t border-luxury flex items-center justify-between gap-3">
-        <button type="button" onclick="openBlogModal('${String(b.id)}')" class="px-5 py-2.5 rounded-full btn-gold text-xs font-semibold inline-flex items-center gap-2">
+      <div class="px-6 pb-6 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+        <button type="button" onclick="openBlogModal('${String(b.id)}')" class="px-5 py-2.5 rounded-full btn-gold text-xs font-bold inline-flex items-center gap-2">
           <span>Read Full Article</span>
           <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
         </button>
-        <button type="button" onclick="askBotQuestion('Summarize the key investment advice from the blog: ${b.title.replace(/'/g, "\\'")}'); document.getElementById('ai-advisor').scrollIntoView({behavior:'smooth'});" class="px-3.5 py-2 rounded-full border border-luxury text-xs font-semibold text-luxury-secondary hover:border-luxury-gold transition">
+        <button type="button" onclick="askBotQuestion('Summarize the key investment advice from the blog: ${b.title.replace(/'/g, "\\'")}'); document.getElementById('ai-advisor').scrollIntoView({behavior:'smooth'});" class="px-3.5 py-2 rounded-full border border-slate-300 dark:border-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300 hover:border-[#7A5A1E] transition">
           Ask AI Bot
         </button>
       </div>
@@ -643,7 +608,7 @@ function renderBlogs() {
 window.openBlogModal = function (blogId) {
   const blog = state.blogs.find(b => String(b.id) === String(blogId));
   if (!blog) return;
-  logVisitorInteraction(`Read Blog: ${blog.title.substring(0, 28)}...`);
+  logVisitorInteraction(`Read Blog: ${blog.title.substring(0, 24)}...`);
 
   const modal = document.getElementById("blogReaderModal");
   const content = document.getElementById("blogModalContent");
@@ -654,21 +619,21 @@ window.openBlogModal = function (blogId) {
       <div class="relative aspect-[16/9] rounded-2xl overflow-hidden bg-[#09100D]">
         <img src="${blog.image || 'assets/srk_sea_view.webp'}" alt="${blog.title}" class="w-full h-full object-cover" />
       </div>
-      <div class="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider text-luxury-gold">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#7A5A1E] dark:text-[#D9B76F]">
         <span>${blog.category}</span>
-        <span>•</span>
+        <span>&bull;</span>
         <span>${blog.readTime || '6 Min Read'}</span>
-        <span>•</span>
+        <span>&bull;</span>
         <span>By ${blog.author || 'Akshay & Advisory Desk'}</span>
       </div>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-luxury-primary leading-tight">${blog.title}</h2>
-      <div class="space-y-4 text-sm sm:text-base text-luxury-secondary leading-relaxed border-t border-luxury pt-4">
+      <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">${blog.title}</h2>
+      <div class="space-y-4 text-xs sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800 pt-4">
         ${paragraphs.map(p => `<p>${p}</p>`).join("")}
       </div>
-      <div class="p-5 rounded-2xl bg-luxury-elevated border border-luxury-gold flex flex-wrap items-center justify-between gap-4 mt-6">
+      <div class="p-5 rounded-2xl bg-amber-500/10 border border-[#7A5A1E]/30 flex flex-wrap items-center justify-between gap-4 mt-6">
         <div>
-          <p class="font-display text-xl font-bold text-luxury-primary">Want to apply this strategy to your Dubai portfolio?</p>
-          <p class="text-xs text-luxury-secondary">Book a private consultation with Akshay or message our executive desk.</p>
+          <p class="font-cinzel text-base sm:text-lg font-bold text-slate-900 dark:text-white">Apply This Strategy to Your Dubai Portfolio</p>
+          <p class="text-xs text-slate-600 dark:text-slate-300">Book a private strategy consultation with Akshay.</p>
         </div>
         <div class="flex items-center gap-3">
           <a href="#register-inbox" onclick="closeBlogModal()" class="px-5 py-2.5 rounded-full btn-gold text-xs font-bold">Book Appointment</a>
@@ -703,8 +668,8 @@ function initAiAdvisorBot() {
   if (!container) return;
 
   appendBotMessage(
-    `Welcome to <strong>Rich World Real Estate Dubai</strong>! I am your AI Legal &amp; Investment Advisor, trained on <strong>DLD &amp; RERA laws</strong>, the <strong>10-Year UAE Golden Visa</strong>, and insights from our <strong>2,000+ sold properties</strong>.<br/><br/>
-    Whether you are an <strong>end-user searching for your dream home</strong> or an <strong>investor aiming to multiply capital</strong>, ask me anything about Escrow laws, the 4% DLD fee, payment plans, or our signature portfolio!`
+    `Welcome to <strong>Rich World Real Estate Dubai</strong>! I am trained on <strong>DLD &amp; RERA laws</strong>, the <strong>10-Year UAE Golden Visa</strong>, and insights from our <strong>2,000+ sold properties</strong>.<br/><br/>
+    Ask me about Escrow protection, the 4% DLD fee, off-plan ROE leverage, or how we help families find their dream home!`
   );
 
   const form = document.getElementById("botChatForm");
@@ -726,7 +691,7 @@ function appendUserMessage(text) {
   const div = document.createElement("div");
   div.className = "flex justify-end";
   div.innerHTML = `
-    <div class="max-w-[85%] px-4 py-3 rounded-2xl rounded-br-none bg-[#7A5A1E] text-white text-xs sm:text-sm leading-relaxed shadow-sm">
+    <div class="max-w-[85%] px-4 py-2.5 rounded-2xl rounded-br-none bg-[#7A5A1E] text-white text-xs sm:text-sm leading-relaxed shadow-sm">
       ${text}
     </div>
   `;
@@ -743,7 +708,7 @@ function appendBotMessage(htmlContent) {
     <div class="w-8 h-8 rounded-xl rw-logo-badge p-1 shrink-0 mt-0.5">
       <img src="assets/logo-transparent.png" alt="AI" class="w-full h-full object-contain" />
     </div>
-    <div class="max-w-[88%] px-4 py-3 rounded-2xl rounded-tl-none bg-luxury-elevated border border-luxury text-luxury-primary text-xs sm:text-sm leading-relaxed space-y-2">
+    <div class="max-w-[88%] px-4 py-2.5 rounded-2xl rounded-tl-none bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs sm:text-sm leading-relaxed space-y-1.5">
       ${htmlContent}
     </div>
   `;
@@ -754,7 +719,6 @@ function appendBotMessage(htmlContent) {
 function generateTrainedLegalResponse(query) {
   const q = query.toLowerCase();
 
-  // 1. Check if user shared phone or email inside the chat -> Auto-register lead!
   const phoneMatch = query.match(/(\+?\d[\d\s\-]{7,15}\d)/);
   const emailMatch = query.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/);
   if (phoneMatch || emailMatch) {
@@ -779,58 +743,40 @@ function generateTrainedLegalResponse(query) {
     state.leads.unshift(newLead);
     saveLocalState();
     renderAdminLeadsTable();
-    return `✅ <strong>Priority Contact Registered!</strong> I have logged your contact details directly into <strong>Akshay’s Executive CRM &amp; Jota Pipeline</strong>. Our senior team will reach out shortly, or you can click the green WhatsApp icon to connect immediately.`;
+    return `✅ <strong>Priority Contact Registered!</strong> Your details have been logged into <strong>Akshay’s Executive CRM &amp; Jota Pipeline</strong>.`;
   }
 
-  // 2. RERA Escrow Law No. 8 & Oqood Law No. 13
   if (q.includes("escrow") || q.includes("oqood") || q.includes("rera") || q.includes("law") || q.includes("safe") || q.includes("off-plan")) {
     return `
       <strong>⚖️ Dubai RERA &amp; DLD Statutory Buyer Protections:</strong><br/>
-      • <strong>Law No. 8 of 2007 (Project Escrow Accounts):</strong> 100% of off-plan buyer installments must be deposited into a project-specific RERA Escrow bank account. Developers cannot access funds freely—monies are released strictly to the contractor as independent RERA engineers certify physical construction milestones.<br/>
-      • <strong>Law No. 13 of 2008 (Oqood Interim Registry):</strong> Upon paying your initial deposit and 4% DLD fee, your off-plan unit is registered in your name via an official <em>Oqood Certificate</em>, protecting your ownership rights in the government database.<br/>
-      • <strong>Defect Liability Period (DLP):</strong> Developers are legally bound by a <strong>1-year snagging warranty</strong> on finishes/MEP and a <strong>10-year structural warranty</strong> under the UAE Civil Code.
+      • <strong>Law No. 8 of 2007 (Project Escrow Accounts):</strong> 100% of off-plan buyer installments are deposited into a RERA-monitored Escrow bank account and released strictly upon certified engineering milestones.<br/>
+      • <strong>Law No. 13 of 2008 (Oqood Interim Registry):</strong> Registers your off-plan ownership directly in the Dubai Land Department database.<br/>
+      • <strong>Defect Liability Period (DLP):</strong> 1-year snagging warranty + 10-year structural warranty under the UAE Civil Code.
     `;
   }
 
-  // 3. Golden Visa Rules
   if (q.includes("golden visa") || q.includes("residency") || q.includes("visa") || q.includes("10-year") || q.includes("2m")) {
     return `
-      <strong>🛂 UAE 10-Year Golden Visa via Real Estate (2026 Rules):</strong><br/>
-      • <strong>Minimum Threshold:</strong> Purchase one or multiple freehold properties totaling <strong>AED 2,000,000+ (~USD $545,000)</strong>.<br/>
-      • <strong>Off-Plan &amp; Mortgaged Allowed:</strong> Both ready Title Deeds and registered off-plan properties (Oqood) from approved developers qualify, as do mortgaged properties.<br/>
-      • <strong>Family Sponsorship:</strong> Covers the primary investor, spouse, children of any age, parents, and domestic staff.<br/>
-      • <strong>Zero Stay Restriction:</strong> Unlike standard residencies, your Golden Visa stays valid even if you live outside the UAE for more than 6 months at a time.<br/>
-      <em>Would you like to view our AED 2.4M+ Golden Visa qualifying waterfront properties?</em>
+      <strong>🛂 UAE 10-Year Golden Visa via Real Estate:</strong><br/>
+      • <strong>Minimum Threshold:</strong> Acquire one or multiple freehold properties totaling <strong>AED 2,000,000+ (~USD $545,000)</strong>.<br/>
+      • <strong>Off-Plan &amp; Mortgaged Eligible:</strong> Both ready Title Deeds and registered off-plan Oqood properties qualify.<br/>
+      • <strong>Family Sponsorship:</strong> Covers spouse, children of any age, parents, and domestic staff with zero minimum stay restriction outside the UAE.
     `;
   }
 
-  // 4. DLD 4% Fee & Buying Costs / Taxes
   if (q.includes("cost") || q.includes("fee") || q.includes("dld") || q.includes("4%") || q.includes("tax") || q.includes("foreign")) {
     return `
-      <strong>💰 Official Dubai Property Acquisition Costs &amp; Tax Framework:</strong><br/>
-      • <strong>DLD Registration / Transfer Fee:</strong> <strong>4%</strong> of the purchase price (one-time government fee paid to the Dubai Land Department).<br/>
-      • <strong>Oqood / Title Deed Admin Fee:</strong> ~AED 580 to AED 3,000 (for off-plan Oqood) or <strong>AED 4,200</strong> (Trustee Office fee for ready properties above AED 500K).<br/>
-      • <strong>Agency Commission:</strong> <strong>0% Commission</strong> when buying off-plan through Rich World Real Estate (2% + VAT on secondary ready market).<br/>
-      • <strong>100% Foreign Freehold (Law No. 7 of 2006):</strong> Non-residents and foreign nationals enjoy 100% perpetual freehold ownership in designated zones with <strong>0% Annual Property Tax, 0% Rental Income Tax, and 0% Capital Gains Tax</strong>.
+      <strong>💰 Official Dubai Buying Costs &amp; 0% Tax Framework:</strong><br/>
+      • <strong>DLD Registration Fee:</strong> <strong>4%</strong> one-time fee paid to the Dubai Land Department.<br/>
+      • <strong>Trustee / Admin Fee:</strong> ~AED 580–3,000 (off-plan Oqood) or AED 4,200 (ready property Trustee transfer).<br/>
+      • <strong>Agency Commission:</strong> <strong>0% Commission</strong> on off-plan developer properties.<br/>
+      • <strong>0% Tax:</strong> 100% foreign freehold ownership (Law No. 7 of 2006) with 0% income tax and 0% capital gains tax.
     `;
   }
 
-  // 5. Dream Home vs Investor ROI / 2,000+ Sold / Rich World Services
-  if (q.includes("dream") || q.includes("investor") || q.includes("roi") || q.includes("yield") || q.includes("2000") || q.includes("2,000") || q.includes("rich world") || q.includes("akshay")) {
-    return `
-      <strong>🏆 The Rich World Real Estate Dual-Mandate (2,000+ Properties Sold):</strong><br/>
-      Led by Managing Principal <strong>Akshay</strong>, our firm has successfully closed over <strong>2,000+ properties</strong> across two specialized divisions:<br/>
-      1. <strong>End-User Dream Home Concierge:</strong> We guide families to serene villas and waterfront penthouses in <em>Dubai Hills Estate, Palm Jumeirah, and Downtown</em>—handling school proximity analysis, Form F (MOU) legal protection, mortgage structuring, and 150-point snagging.<br/>
-      2. <strong>Investor Capital Growth Desk:</strong> We accompany investors into high-yield assets (<strong>8.5%–11.5% NET rental yield</strong>) and leveraged off-plan payment plans (30/70 &amp; 50/50 post-handover) achieving <strong>&gt;140% Return on Equity (ROE)</strong>.<br/>
-      <em>You can register in our Priority Inbox below or click the green WhatsApp icon to connect directly with Akshay!</em>
-    `;
-  }
-
-  // Default intelligent synthesis
   return `
-    <strong>📊 Rich World Advisory Insight:</strong><br/>
-    In Dubai’s current market cycle, buyers benefit from full <strong>RERA Escrow protection (Law No. 8 of 2007)</strong>, <strong>0% income/capital gains tax</strong>, and <strong>10-Year Golden Visa eligibility from AED 2,000,000</strong>.<br/><br/>
-    With <strong>over 2,000+ properties sold</strong>, <strong>Akshay</strong> and our advisory team can tailor a custom comparison for you—whether you are looking for a family dream sanctuary or a high-ROE investment. Feel free to leave your WhatsApp number or email right here in the chat, or fill out the <strong>Priority Registration Inbox</strong> below!
+    <strong>🏆 Rich World Real Estate Advisory (2,000+ Properties Sold):</strong><br/>
+    Led by Managing Principal <strong>Akshay</strong>, we accompany <strong>end-users</strong> to secure their dream family home and <strong>investors</strong> to achieve <strong>8.5%–11.5% net yields</strong> and <strong>&gt;140% ROE</strong>. Leave your WhatsApp number here in the chat or register in our Priority Inbox below!
   `;
 }
 
@@ -840,7 +786,7 @@ window.askBotQuestion = function (questionText) {
   setTimeout(() => {
     const reply = generateTrainedLegalResponse(questionText);
     appendBotMessage(reply);
-  }, 280);
+  }, 240);
 };
 
 // ============================================================================
@@ -877,7 +823,7 @@ function initLeadRegistrationForm() {
       notes,
       crm_status: "CREATED",
       whatsapp_status: "pending",
-      personalized_message: `Hello ${name}, this is Akshay from Rich World Real Estate Dubai. Thank you for registering regarding "${objective}" (Budget ~AED ${budgetAED.toLocaleString()}). I have prepared a bespoke selection of properties for you...`,
+      personalized_message: `Hello ${name}, this is Akshay from Rich World Real Estate Dubai. Thank you for registering regarding "${objective}" (Budget ~AED ${budgetAED.toLocaleString()}).`,
       created_at: new Date().toISOString()
     };
 
@@ -892,8 +838,8 @@ function initLeadRegistrationForm() {
       banner.innerHTML = `
         <div class="flex items-center justify-between gap-3">
           <div>
-            <p class="font-bold text-emerald-700 dark:text-emerald-400">✓ Profile Registered in Akshay's Executive Inbox &amp; Jota CRM!</p>
-            <p class="mt-0.5">Thank you, <strong>${name}</strong>. Your inquiry (${objective}) has been logged for priority accompaniment.</p>
+            <p class="font-bold text-emerald-700 dark:text-emerald-400">✓ Registered in Akshay's Inbox &amp; Jota CRM!</p>
+            <p class="mt-0.5">Thank you, <strong>${name}</strong>. Your inquiry has been logged for priority accompaniment.</p>
           </div>
           <a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-9 h-9 shrink-0">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -907,7 +853,6 @@ function initLeadRegistrationForm() {
   });
 }
 
-// JOTA SYSTEM EXPORT 1: CSV / EXCEL FORMAT (/api/crm/campaigns/upload-excel compatible)
 window.exportLeadsJotaCSV = function () {
   const headers = [
     "name",
@@ -956,7 +901,6 @@ window.exportLeadsJotaCSV = function () {
   showJotaStatus("✓ Jota CSV / Excel file downloaded! Ready for direct import in Jota CRM.", "emerald");
 };
 
-// JOTA SYSTEM EXPORT 2: NATIVE JOTA JSON SCHEMA (campaigns + leads + visits)
 window.exportLeadsJotaJSON = function () {
   const jotaPayload = {
     jota_schema_version: "2.0",
@@ -1000,7 +944,6 @@ window.exportLeadsJotaJSON = function () {
   showJotaStatus("✓ Jota JSON package exported with full campaign, leads & visitor telemetry!", "emerald");
 };
 
-// JOTA SYSTEM EXPORT 3: DIRECT LIVE PUSH TO LOCAL JOTA FASTAPI (127.0.0.1:8000)
 window.pushLeadsToJotaLocalAPI = async function () {
   showJotaStatus("Connecting to Jota Local API at http://127.0.0.1:8000/api/crm/leads ...", "amber");
   let pushed = 0;
@@ -1018,10 +961,10 @@ window.pushLeadsToJotaLocalAPI = async function () {
       });
       if (res.ok) pushed++;
     }
-    showJotaStatus(`✓ Successfully synced ${pushed} leads directly into local Jota CRM (127.0.0.1:8000)!`, "emerald");
+    showJotaStatus(`✓ Synced ${pushed} leads directly into local Jota CRM (127.0.0.1:8000)!`, "emerald");
   } catch (err) {
     showJotaStatus(
-      "ℹ️ Jota Desktop API (:8000) is not currently reachable from browser CORS or offline. Use 'Export Jota CSV / Excel' or 'Export Jota JSON' to import anytime!",
+      "ℹ️ Use 'Export Jota CSV / Excel' or 'Export Jota JSON' to import directly into Jota Desktop!",
       "amber"
     );
   }
@@ -1056,7 +999,7 @@ function showJotaStatus(msg, color) {
 }
 
 // ============================================================================
-// 9. ADMIN DASHBOARD (5 MANDATORY TABS + HTML5 CANVAS 800x800 COMPRESSOR)
+// 9. ADMIN DASHBOARD & HTML5 CANVAS 800x800 COMPRESSOR
 // ============================================================================
 function updateAdminBadges() {
   const badge = document.getElementById("adminLeadCountBadge");
@@ -1080,6 +1023,14 @@ function openAdminModal() {
   modal.classList.add("flex");
   syncAdminAuthView();
 }
+
+window.openAdminModalFromDrawer = function () {
+  const drawerBackdrop = document.getElementById("drawerBackdrop");
+  const drawerPanel = document.getElementById("drawerPanel");
+  if (drawerBackdrop) drawerBackdrop.classList.remove("active");
+  if (drawerPanel) drawerPanel.classList.remove("active");
+  openAdminModal();
+};
 
 window.closeAdminModal = function () {
   const modal = document.getElementById("adminModal");
@@ -1121,26 +1072,25 @@ function renderAdminLeadsTable() {
   tbody.innerHTML = state.leads
     .map(
       l => `
-    <tr class="hover:bg-luxury-elevated/60 transition">
+    <tr class="hover:bg-black/5 dark:hover:bg-white/5 transition">
       <td class="p-3">
-        <p class="font-bold text-luxury-primary">${l.name}</p>
-        <p class="text-[10px] text-luxury-muted">${String(l.created_at || "").slice(0, 16).replace("T", " ")}</p>
+        <p class="font-bold">${l.name}</p>
+        <p class="text-[10px] text-slate-400">${String(l.created_at || "").slice(0, 16).replace("T", " ")}</p>
       </td>
       <td class="p-3">
-        <p class="font-semibold text-luxury-primary">${l.phone}</p>
-        <p class="text-[11px] text-luxury-secondary">${l.email || "-"}</p>
+        <p class="font-semibold">${l.phone}</p>
+        <p class="text-[11px] text-slate-500">${l.email || "-"}</p>
       </td>
       <td class="p-3">
-        <p class="font-semibold text-luxury-gold">${l.objective}</p>
-        <p class="text-[11px] text-luxury-secondary">${l.timeline || ""}</p>
-        <p class="text-[10px] text-luxury-muted mt-0.5 max-w-xs truncate" title="${l.notes || ""}">${l.notes || ""}</p>
+        <p class="font-semibold text-[#7A5A1E] dark:text-[#D9B76F]">${l.objective}</p>
+        <p class="text-[11px] text-slate-500">${l.timeline || ""}</p>
       </td>
       <td class="p-3 font-semibold">
         <p>AED ${Number(l.budget_aed || 0).toLocaleString()}</p>
-        <p class="text-[10px] text-luxury-muted">€${Number(l.budget_eur || Math.round((l.budget_aed || 0) / EUR_RATE)).toLocaleString()}</p>
+        <p class="text-[10px] text-slate-400">&euro;${Number(l.budget_eur || Math.round((l.budget_aed || 0) / EUR_RATE)).toLocaleString()}</p>
       </td>
       <td class="p-3">
-        <select onchange="updateLeadStatus('${String(l.id)}', this.value)" class="px-2 py-1 rounded-lg bg-luxury-surface border border-luxury text-[11px] font-bold">
+        <select onchange="updateLeadStatus('${String(l.id)}', this.value)" class="px-2 py-1 rounded-lg bg-transparent border border-slate-300 dark:border-slate-700 text-[11px] font-bold">
           ${["CREATED", "CONTACTED", "QUALIFIED", "VIP_INVESTOR", "CLOSED"]
             .map(s => `<option value="${s}" ${l.crm_status === s ? "selected" : ""}>${s}</option>`)
             .join("")}
@@ -1148,7 +1098,6 @@ function renderAdminLeadsTable() {
       </td>
       <td class="p-3 text-right">
         <div class="inline-flex items-center gap-2">
-          <!-- WhatsApp Icon-Only Trigger (Rule 5) -->
           <a href="https://wa.me/${l.clean_phone || '16479016999'}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="wa-icon-only-btn w-7 h-7">
             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.535 5.86l-1.535 5.604 5.748-1.508c1.693.903 3.621 1.416 5.669 1.416 6.627 0 12-5.373 12-12s-5.373-12-11.417-11.372z"/>
@@ -1175,7 +1124,6 @@ window.updateLeadStatus = function (leadId, newStatus) {
 };
 
 window.deleteLead = function (leadId) {
-  // Strict String ID rule (Rule 7.3)
   state.leads = state.leads.filter(l => String(l.id) !== String(leadId));
   saveLocalState();
   renderAdminLeadsTable();
@@ -1213,19 +1161,18 @@ function renderAdminVisitsTable() {
   tbody.innerHTML = state.visits
     .map(
       v => `
-    <tr class="hover:bg-luxury-elevated/60">
+    <tr>
       <td class="p-3 font-mono text-[11px]">${v.timestamp}</td>
-      <td class="p-3 font-mono text-[11px] text-luxury-gold">${v.id}</td>
+      <td class="p-3 font-mono text-[11px] text-[#7A5A1E] dark:text-[#D9B76F]">${v.id}</td>
       <td class="p-3">${v.device}</td>
       <td class="p-3">${v.source}</td>
-      <td class="p-3 text-luxury-secondary">${v.interactions}</td>
+      <td class="p-3 text-slate-500">${v.interactions}</td>
     </tr>
   `
     )
     .join("");
 }
 
-// HTML5 CANVAS IMAGE COMPRESSOR (Max 800x800, WebP/JPEG ~45KB — Rule 6.2)
 function initCanvasImageCompressor() {
   const fileInput = document.getElementById("propImageFile");
   if (!fileInput) return;
@@ -1256,7 +1203,7 @@ function initCanvasImageCompressor() {
         document.getElementById("propImageData").value = compressedDataUrl;
         const kb = Math.round((compressedDataUrl.length * 3) / 4 / 1024);
         const statusEl = document.getElementById("canvasCompressStatus");
-        if (statusEl) statusEl.textContent = `✓ Compressed via HTML5 Canvas (${w}x${h}px, ~${kb}KB)`;
+        if (statusEl) statusEl.textContent = `✓ Canvas Compressed (${w}x${h}px, ~${kb}KB)`;
       };
       img.src = ev.target.result;
     };
@@ -1278,17 +1225,17 @@ function renderAdminCatalog() {
   list.innerHTML = state.properties
     .map(
       p => `
-    <div class="p-4 rounded-2xl bg-luxury-elevated border border-luxury flex flex-col justify-between gap-3 text-xs">
+    <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between gap-3 text-xs">
       <div class="flex items-center gap-3">
-        <img src="${p.image}" alt="${p.title}" class="w-16 h-16 rounded-xl object-cover shrink-0" />
+        <img src="${p.image}" alt="${p.title}" class="w-14 h-14 rounded-xl object-cover shrink-0" />
         <div>
-          <span class="text-[10px] font-bold uppercase text-luxury-gold">${p.category}</span>
-          <p class="font-bold text-luxury-primary line-clamp-1">${p.title}</p>
-          <p class="text-luxury-secondary">AED ${Number(p.priceAED).toLocaleString()}</p>
+          <span class="text-[10px] font-bold uppercase text-[#7A5A1E] dark:text-[#D9B76F]">${p.category}</span>
+          <p class="font-bold line-clamp-1">${p.title}</p>
+          <p class="text-slate-500">AED ${Number(p.priceAED).toLocaleString()}</p>
         </div>
       </div>
-      <div class="flex items-center justify-end gap-2 pt-2 border-t border-luxury">
-        <button type="button" onclick="editProperty('${String(p.id)}')" class="px-3 py-1 rounded-lg border border-luxury-gold text-luxury-gold font-semibold">Edit</button>
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+        <button type="button" onclick="editProperty('${String(p.id)}')" class="px-3 py-1 rounded-lg border border-[#7A5A1E] text-[#7A5A1E] dark:text-[#D9B76F] font-semibold">Edit</button>
         <button type="button" onclick="deleteProperty('${String(p.id)}')" class="px-3 py-1 rounded-lg border border-rose-500/40 text-rose-500 font-semibold">Delete</button>
       </div>
     </div>
@@ -1333,11 +1280,11 @@ function renderAdminCategories() {
   container.innerHTML = state.categories
     .map(
       cat => `
-    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-luxury-surface border border-luxury text-xs font-semibold">
+    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-700 text-xs font-semibold">
       <span>${cat}</span>
       ${
         cat !== "All"
-          ? `<button type="button" onclick="removeDynamicCategory('${cat.replace(/'/g, "\\'")}')" class="text-rose-500 hover:font-bold">×</button>`
+          ? `<button type="button" onclick="removeDynamicCategory('${cat.replace(/'/g, "\\'")}')" class="text-rose-500 font-bold">&times;</button>`
           : ""
       }
     </span>
@@ -1434,19 +1381,11 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLocalState();
   recordVisitorArrival();
   applyTheme();
-  applyLanguage();
 
-  // Set announcement text
   const annTextEl = document.getElementById("announcementText");
   if (annTextEl && state.announcement) annTextEl.textContent = state.announcement;
 
-  // Currency Label
-  const curLabel = document.getElementById("currencyLabel");
-  if (curLabel) curLabel.textContent = state.currency;
-
-  // Render Main Sections
-  updateSimulatorCalc();
-  renderCategoriesAndPortfolio();
+  setCurrency(state.currency);
   renderBlogs();
   initAiAdvisorBot();
   initLeadRegistrationForm();
@@ -1466,52 +1405,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Currency Toggle
-  ["currencyToggleBtn", "drawerCurrencyBtn"].forEach(id => {
+  // Currency Pill Buttons
+  ["currencyAED", "drawerCurrencyAED"].forEach(id => {
     const btn = document.getElementById(id);
-    if (btn) {
-      btn.addEventListener("click", () => {
-        state.currency = state.currency === "AED" ? "USD" : "AED";
-        localStorage.setItem("rw_currency", state.currency);
-        if (curLabel) curLabel.textContent = state.currency;
-        updateSimulatorCalc();
-        renderCategoriesAndPortfolio();
-      });
-    }
+    if (btn) btn.addEventListener("click", () => setCurrency("AED"));
+  });
+  ["currencyUSD", "drawerCurrencyUSD"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener("click", () => setCurrency("USD"));
   });
 
-  // Language Toggle
-  ["langToggleBtn", "drawerLangBtn"].forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) {
-      btn.addEventListener("click", () => {
-        state.lang = state.lang === "en" ? "ar" : "en";
-        localStorage.setItem("rw_lang", state.lang);
-        applyLanguage();
-      });
-    }
-  });
-
-  // Mobile Drawer Controls
+  // Hamburger Drawer Controls
   const openDrawerBtn = document.getElementById("openDrawerBtn");
   const closeDrawerBtn = document.getElementById("closeDrawerBtn");
   const drawerBackdrop = document.getElementById("drawerBackdrop");
   const drawerPanel = document.getElementById("drawerPanel");
 
   function openDrawer() {
-    drawerBackdrop.classList.add("active");
-    drawerPanel.classList.add("active");
+    if (drawerBackdrop && drawerPanel) {
+      drawerBackdrop.classList.add("active");
+      drawerPanel.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
   }
   function closeDrawer() {
-    drawerBackdrop.classList.remove("active");
-    drawerPanel.classList.remove("active");
+    if (drawerBackdrop && drawerPanel) {
+      drawerBackdrop.classList.remove("active");
+      drawerPanel.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
   }
   if (openDrawerBtn) openDrawerBtn.addEventListener("click", openDrawer);
   if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeDrawer);
   if (drawerBackdrop) drawerBackdrop.addEventListener("click", closeDrawer);
   document.querySelectorAll(".drawer-link").forEach(l => l.addEventListener("click", closeDrawer));
 
-  // Simulator Range & Strategy Buttons
+  // Simulator Range & Strategy
   const rangeEl = document.getElementById("calcPriceRange");
   if (rangeEl) {
     rangeEl.addEventListener("input", () => {
@@ -1523,10 +1452,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       state.calcStrategy = btn.dataset.strategy;
       document.querySelectorAll(".calc-strat-btn").forEach(b => {
-        b.classList.remove("bg-[#7A5A1E]", "text-white", "border-luxury-gold");
-        b.classList.add("border-luxury", "text-luxury-primary");
+        b.className = "calc-strat-btn py-2 px-3 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition";
       });
-      btn.classList.add("bg-[#7A5A1E]", "text-white", "border-luxury-gold");
+      btn.className = "calc-strat-btn py-2 px-3 rounded-xl text-xs font-bold bg-[#7A5A1E] text-white transition";
       updateSimulatorCalc();
     });
   });
@@ -1566,10 +1494,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const targetId = btn.dataset.admintab;
       document.querySelectorAll(".admin-tab-btn").forEach(b => {
-        b.classList.remove("bg-[#7A5A1E]", "text-white");
-        b.classList.add("border", "border-luxury", "text-luxury-primary");
+        b.className = "admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-700";
       });
-      btn.classList.add("bg-[#7A5A1E]", "text-white");
+      btn.className = "admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#7A5A1E] text-white";
       document.querySelectorAll(".admin-tab-panel").forEach(p => p.classList.add("hidden"));
       const targetPanel = document.getElementById(targetId);
       if (targetPanel) targetPanel.classList.remove("hidden");
